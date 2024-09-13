@@ -1,29 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Square } from "./Square";
 
 import "../styles/board.css";
-import { calculateWinner } from "../calculateWinner";
 
-export const Board = () => {
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [isXnext, setisXnext] = useState(true);
-  const winner = calculateWinner(board);
-
-  const clickHandler = () => {
-    console.log(123);
-  };
-
+export const Board = ({ squares, onClick, winner, isDraw, isXnext }) => {
   return (
     <div className="board">
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
-      <Square clickHandler={clickHandler} />
+      {squares.map((square, i) => {
+        return <Square clickHandler={onClick} value={square} key={i} id={i} />;
+      })}
+      {!isDraw && !winner && <p>Jetzt dran: {isXnext ? "X" : "O"}</p>}
+      {winner && <p>Gewonnen: {winner}</p>}
+      {isDraw && <p>Unentschieden</p>}
     </div>
   );
 };

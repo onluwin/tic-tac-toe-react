@@ -1,4 +1,4 @@
-export const calculateWinner = (squares) => {
+export const calculateWinner = (squares, setIsDraw) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -15,6 +15,12 @@ export const calculateWinner = (squares) => {
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
+  }
+
+  if (!squares.includes(null)) {
+    console.log("draw");
+    setIsDraw(true);
+    return;
   }
 
   return null;

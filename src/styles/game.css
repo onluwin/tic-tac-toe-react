@@ -2,7 +2,6 @@
   display: flex;
   min-height: 100vh;
   width: 100%;
-  /* background-color: #fff; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -12,15 +11,15 @@
   margin-bottom: 50px;
   width: 230px;
   height: 60px;
-  border-radius: 30px;
   cursor: pointer;
-  font-size: 16px;
-  border: 3px solid blue;
-  color: blue;
+  font-size: 20px;
+  border: 3px solid #fff;
+  color: #fff;
   transition: border, color, 500ms;
+  background-color: #282c34;
 }
 .restartBtn:hover {
   border: 3px solid #fff;
-  color: #fff;
-  background-color: blue;
+  color: #282c34;
+  background-color: #fff;
 }

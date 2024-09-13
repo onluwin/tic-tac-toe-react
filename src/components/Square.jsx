@@ -1,9 +1,9 @@
 import "../styles/square.css";
 
-export const Square = ({ clickHandler }) => {
+export const Square = ({ clickHandler, value, id }) => {
   return (
-    <button onClick={clickHandler} className="square">
-      x
+    <button onClick={() => clickHandler(id)} id={id} className="square">
+      {value}
     </button>
   );
 };

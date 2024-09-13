@@ -10,15 +10,25 @@ export const Game = () => {
   const [isXnext, setisXnext] = useState(true);
   const [winner, setWinner] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
+
   useEffect(() => {
     setWinner(calculateWinner(board, setIsDraw));
+
     return () => {};
   }, [board]);
+
+  useEffect(() => {
+    if (!winner) {
+      return;
+    }
+    console.log("winner", winner);
+    toast.success(`${winner} hat gewonnen`);
+  }, [winner]);
 
   const clickHandler = (index) => {
     const boardCopy = [...board];
     if (winner || isDraw) {
-      toast.error("Game is over");
+      return toast.error("Game is over");
     }
     if (winner || boardCopy[index]) {
       // toast.error("Game is over");
@@ -39,7 +49,9 @@ export const Game = () => {
       <button
         type="button"
         className="restartBtn"
-        onClick={() => startNewGame(setBoard, setisXnext, setIsDraw, setWinner)}
+        onClick={() => {
+          startNewGame(setBoard, setisXnext, setIsDraw, setWinner);
+        }}
       >
         Noch einmal spielen
       </button>

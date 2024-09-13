@@ -2,7 +2,7 @@
   "name": "tic-tac-toe-game",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://onliwin.github.io/tic-tac-toe-react",
+  "homepage": "https://onluwin.github.io/tic-tac-toe-react",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

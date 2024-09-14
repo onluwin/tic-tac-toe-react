@@ -28,7 +28,7 @@ export const Game = () => {
   const clickHandler = (index) => {
     const boardCopy = [...board];
     if (winner || isDraw) {
-      return toast.error("Game is over");
+      return toast.error("Das Spiel ist beendet");
     }
     if (winner || boardCopy[index]) {
       // toast.error("Game is over");

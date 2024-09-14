@@ -8,7 +8,18 @@
   outline: none;
   cursor: pointer;
   box-sizing: border-box;
+  border: none;
+  border: 1px solid black;
 }
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .square {
+    width: 85px;
+    height: 85px;
+    /* Можно добавить что-то вроде margin для отступов */
+    font-size: 33px;
+  }
+}
+
 .square:hover {
   background-color: #000;
   color: #fff;

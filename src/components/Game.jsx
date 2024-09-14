@@ -13,26 +13,38 @@ export const Game = () => {
 
   useEffect(() => {
     setWinner(calculateWinner(board, setIsDraw));
-
-    return () => {};
   }, [board]);
 
   useEffect(() => {
     if (!winner) {
       return;
     }
-    console.log("winner", winner);
-    toast.success(`${winner} hat gewonnen`);
+    // console.log("winner", winner);
+    toast.success(`${winner} hat gewonnen`, {
+      duration: 1500,
+    });
   }, [winner]);
+
+  useEffect(() => {
+    if (!isDraw) {
+      return;
+    }
+    toast.error(`Unentschieden`, {
+      duration: 1500,
+    });
+  }, [isDraw]);
 
   const clickHandler = (index) => {
     const boardCopy = [...board];
     if (winner || isDraw) {
-      return toast.error("Das Spiel ist beendet");
+      return toast.error("Das Spiel ist beendet", {
+        duration: 1500,
+      });
     }
     if (winner || boardCopy[index]) {
-      // toast.error("Game is over");
-      toast("Sie haben es schon benutzt");
+      toast("Sie haben es schon benutzt", {
+        duration: 1500,
+      });
       console.log("boardCopy", boardCopy);
       return null;
     } else {

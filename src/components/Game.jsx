@@ -6,12 +6,14 @@ import { calculateWinner } from "../Utils/calculateWinner";
 import { startNewGame } from "../Utils/startNewGame";
 import { checkDiagonalWin } from "../Utils/checkDiagonalWin";
 import { checkVerticalWin } from "../Utils/checkVerticalWin";
+import { botMove } from "../Utils/botMove";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXnext, setisXnext] = useState(true);
   const [result, setResult] = useState({ winner: "", winningLine: [] });
   const [isDraw, setIsDraw] = useState(false);
+  const [isBotEnabled, setIsBotEnabled] = useState(true);
 
   useEffect(() => {
     const res = calculateWinner(board, setIsDraw);
@@ -68,6 +70,17 @@ export const Game = () => {
     });
   }, [isDraw]);
 
+  // BOT LOGIC
+
+  // useEffect(() => {
+  //   console.log("BOT MOVES");
+  //   if (isBotEnabled && !isXnext && !result.winner)
+  //     botMove(board, setBoard, setisXnext);
+
+  //   // const btnRefs = document.querySelectorAll(".square");
+  //   // btnRefs.forEach((btn) => (btn.style.pointerEvents = "none"));
+  // }, [board, isBotEnabled, isXnext, result.winner]);
+
   const clickHandler = (index) => {
     const boardCopy = [...board];
     if (result.winner || isDraw) {
@@ -107,6 +120,8 @@ export const Game = () => {
         winner={result.winner}
         isDraw={isDraw}
         isXnext={isXnext}
+        isBotEnabled={isBotEnabled}
+        setIsBotEnabled={setIsBotEnabled}
       />
     </div>
   );

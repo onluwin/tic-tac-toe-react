@@ -12,7 +12,13 @@ export const Game = () => {
   const [isDraw, setIsDraw] = useState(false);
 
   useEffect(() => {
-    setWinner(calculateWinner(board, setIsDraw));
+    const res = calculateWinner(board, setIsDraw);
+    console.log("res", res);
+    try {
+      setWinner(res.winner);
+    } catch (error) {
+      console.warn(error);
+    }
   }, [board]);
 
   useEffect(() => {

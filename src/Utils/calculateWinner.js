@@ -18,7 +18,7 @@ export const calculateWinner = (squares, setIsDraw) => {
       // console.log("squares[b]", squares[b]);
       // console.log("squares[c]", squares[c]);
       console.log("a b c", a, b, c);
-      return { winner: squares[a], winnerLine: [a, b, c] };
+      return { winner: squares[a], winningLine: [a, b, c] };
 
       // return squares[a];
     }
@@ -27,8 +27,8 @@ export const calculateWinner = (squares, setIsDraw) => {
   if (!squares.includes(null)) {
     console.log("draw");
     setIsDraw(true);
-    return;
+    return { winner: null, winningLine: [] };
   }
 
-  return null;
+  return { winner: null, winningLine: [] };
 };

@@ -4,32 +4,60 @@ import { Board } from "./Board";
 import toast from "react-hot-toast";
 import { calculateWinner } from "../Utils/calculateWinner";
 import { startNewGame } from "../Utils/startNewGame";
+import { checkDiagonalWin } from "../Utils/checkDiagonalWin";
+import { checkVerticalWin } from "../Utils/checkVerticalWin";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXnext, setisXnext] = useState(true);
-  const [winner, setWinner] = useState(null);
+  const [result, setResult] = useState({ winner: "", winningLine: [] });
   const [isDraw, setIsDraw] = useState(false);
 
   useEffect(() => {
     const res = calculateWinner(board, setIsDraw);
     console.log("res", res);
     try {
-      setWinner(res.winner);
+      setResult(res);
     } catch (error) {
       console.warn(error);
     }
   }, [board]);
 
   useEffect(() => {
-    if (!winner) {
+    if (!result.winner) {
       return;
     }
-    // console.log("winner", winner);
-    toast.success(`${winner} hat gewonnen`, {
+    console.log("result.winningLine", result.winningLine);
+
+    let isDiagonalWin = checkDiagonalWin(result.winningLine);
+    const isVerticalWin = checkVerticalWin(result.winningLine);
+
+    console.log("isDiagonalWin", isDiagonalWin);
+
+    const squaresRefs = document.querySelectorAll(".square");
+
+    if (isDiagonalWin.result) {
+      result.winningLine.forEach((winningIndex) => {
+        const winningSquaresRef = squaresRefs[winningIndex];
+
+        return isDiagonalWin.direction === "right"
+          ? winningSquaresRef.classList.add("winner", "diagonal-right")
+          : winningSquaresRef.classList.add("winner", "diagonal-left");
+      });
+    } else if (isVerticalWin) {
+      result.winningLine.forEach((winningIndex) => {
+        squaresRefs[winningIndex].classList.add("winner", "vertical");
+      });
+    } else {
+      result.winningLine.forEach((winningIndex) => {
+        squaresRefs[winningIndex].classList.add("winner");
+      });
+    }
+
+    toast.success(`${result.winner} hat gewonnen`, {
       duration: 1500,
     });
-  }, [winner]);
+  }, [result.winner, result.winningLine]);
 
   useEffect(() => {
     if (!isDraw) {
@@ -42,12 +70,12 @@ export const Game = () => {
 
   const clickHandler = (index) => {
     const boardCopy = [...board];
-    if (winner || isDraw) {
+    if (result.winner || isDraw) {
       return toast.error("Das Spiel ist beendet", {
         duration: 1500,
       });
     }
-    if (winner || boardCopy[index]) {
+    if (result.winner || boardCopy[index]) {
       toast("Sie haben es schon benutzt", {
         duration: 1500,
       });
@@ -68,7 +96,7 @@ export const Game = () => {
         type="button"
         className="restartBtn"
         onClick={() => {
-          startNewGame(setBoard, setisXnext, setIsDraw, setWinner);
+          startNewGame(setBoard, setisXnext, setIsDraw, setResult);
         }}
       >
         Noch einmal spielen
@@ -76,7 +104,7 @@ export const Game = () => {
       <Board
         squares={board}
         onClick={clickHandler}
-        winner={winner}
+        winner={result.winner}
         isDraw={isDraw}
         isXnext={isXnext}
       />

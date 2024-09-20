@@ -6,9 +6,13 @@ import "../styles/board.css";
 export const Board = ({ squares, onClick, winner, isDraw, isXnext }) => {
   return (
     <div className="board">
-      {squares.map((square, i) => {
-        return <Square clickHandler={onClick} value={square} key={i} id={i} />;
-      })}
+      <div className="x">
+        {squares.map((square, i) => {
+          return (
+            <Square clickHandler={onClick} value={square} key={i} id={i} />
+          );
+        })}
+      </div>
       <div>
         {!isDraw && !winner && (
           <p className="gameResult">Jetzt dran: {isXnext ? "X" : "O"}</p>

@@ -17,15 +17,15 @@
 }
 
 .infoArea {
+  width: 100%;
   display: flex;
-  width: 250px;
   justify-content: space-between;
 }
 
 .enableBotBtn {
   height: 40px;
   margin: auto;
-  margin-left: 35px;
+  /* margin-left: 35px; */
   background-color: #282c34;
   border: 2px solid #fff;
   color: #fff;

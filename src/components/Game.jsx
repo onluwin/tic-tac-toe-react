@@ -6,7 +6,7 @@ import { calculateWinner } from "../Utils/calculateWinner";
 import { startNewGame } from "../Utils/startNewGame";
 import { checkDiagonalWin } from "../Utils/checkDiagonalWin";
 import { checkVerticalWin } from "../Utils/checkVerticalWin";
-import { botMove } from "../Utils/botMove";
+import { botMove, timerId } from "../Utils/botMove";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -15,9 +15,11 @@ export const Game = () => {
   const [isDraw, setIsDraw] = useState(false);
   const [isBotEnabled, setIsBotEnabled] = useState(true);
 
+  // CALCULATE WINNER
+
   useEffect(() => {
     const res = calculateWinner(board, setIsDraw);
-    console.log("res", res);
+    // console.log("res", res);
     try {
       setResult(res);
     } catch (error) {
@@ -25,16 +27,18 @@ export const Game = () => {
     }
   }, [board]);
 
+  // WIN LOGIC
+
   useEffect(() => {
-    if (!result.winner) {
+    if (!result.winner || !result.winningLine) {
       return;
     }
-    console.log("result.winningLine", result.winningLine);
+    // console.log("result.winningLine", result.winningLine);
 
     let isDiagonalWin = checkDiagonalWin(result.winningLine);
     const isVerticalWin = checkVerticalWin(result.winningLine);
 
-    console.log("isDiagonalWin", isDiagonalWin);
+    // console.log("isDiagonalWin", isDiagonalWin);
 
     const squaresRefs = document.querySelectorAll(".square");
 
@@ -61,6 +65,8 @@ export const Game = () => {
     });
   }, [result.winner, result.winningLine]);
 
+  // DRAW LOGIC
+
   useEffect(() => {
     if (!isDraw) {
       return;
@@ -72,14 +78,38 @@ export const Game = () => {
 
   // BOT LOGIC
 
-  // useEffect(() => {
-  //   console.log("BOT MOVES");
-  //   if (isBotEnabled && !isXnext && !result.winner)
-  //     botMove(board, setBoard, setisXnext);
+  useEffect(() => {
+    let isGameOver = isDraw || Boolean(result.winner);
+    // console.log("isGameOver", isGameOver);
+    if (isGameOver) {
+      clearTimeout(timerId);
+      return;
+    }
+    // console.log("BOT MOVES");
+    const btnRefs = document.querySelectorAll(".square");
+    if (isBotEnabled && !isXnext && !result.winner) {
+      botMove(board, setBoard, setisXnext);
 
-  //   // const btnRefs = document.querySelectorAll(".square");
-  //   // btnRefs.forEach((btn) => (btn.style.pointerEvents = "none"));
-  // }, [board, isBotEnabled, isXnext, result.winner]);
+      btnRefs.forEach((btn) => (btn.style.pointerEvents = "none"));
+    }
+    return () => {
+      btnRefs.forEach((btn) => (btn.style.pointerEvents = "auto"));
+    };
+  }, [board, isBotEnabled, isDraw, isXnext, result.winner]);
+
+  // CHANGING GAME MODE ABILITY
+
+  useEffect(() => {
+    // console.log("board", board);
+    const isGameStarted = board.some((element) => element !== null);
+    // console.log("isGameStarted", isGameStarted);
+    const enableBotBtnRef = document.querySelector(".enableBotBtn");
+    if (isGameStarted) {
+      enableBotBtnRef.classList.add("not-active");
+    } else {
+      enableBotBtnRef.classList.remove("not-active");
+    }
+  }, [board]);
 
   const clickHandler = (index) => {
     const boardCopy = [...board];
@@ -92,7 +122,7 @@ export const Game = () => {
       toast("Sie haben es schon benutzt", {
         duration: 1500,
       });
-      console.log("boardCopy", boardCopy);
+      // console.log("boardCopy", boardCopy);
       return null;
     } else {
       const button = document.getElementById(index);
@@ -100,6 +130,7 @@ export const Game = () => {
       setisXnext(!isXnext);
       boardCopy[index] = isXnext ? "X" : "O";
       setBoard(boardCopy);
+      // setIsBotMoving(true);
     }
   };
 

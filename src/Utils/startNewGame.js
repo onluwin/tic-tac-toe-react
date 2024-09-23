@@ -1,6 +1,6 @@
 export const startNewGame = (setBoard, setisXnext, setWinner, setIsDraw) => {
   const squaresRefs = document.querySelectorAll(".square");
-  console.log("squaresRefs", squaresRefs);
+  // console.log("squaresRefs", squaresRefs);
   squaresRefs.forEach((elem) =>
     elem.classList.remove(
       "winner",

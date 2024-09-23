@@ -1,3 +1,5 @@
+export let timerId;
+
 export const botMove = (board, setBoard, setisXnext) => {
   const boardCopy = [...board];
   let availableCells = board
@@ -14,12 +16,12 @@ export const botMove = (board, setBoard, setisXnext) => {
 
   boardCopy[randomIndex] = "O";
 
-  setTimeout(() => {
+  timerId = setTimeout(() => {
     setBoard(boardCopy);
     setisXnext(true);
   }, 500);
 
-  console.log("availableCells", availableCells);
+  // console.log("availableCells", availableCells);
 
   //   document.querySelector(`[data-index='${randomIndex}']`).textContent = "O";
   //   document.querySelector(`[id]`).textContent = "O";

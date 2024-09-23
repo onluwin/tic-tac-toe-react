@@ -25,6 +25,7 @@
 .enableBotBtn {
   height: 40px;
   margin: auto;
+  margin-left: 35px;
   background-color: #282c34;
   border: 2px solid #fff;
   color: #fff;
@@ -37,4 +38,15 @@
 .enableBotBtn:hover {
   color: #282c34;
   background-color: #fff;
+}
+
+.not-active {
+  border-color: red;
+  color: red;
+  pointer-events: none;
+}
+.not-active:hover {
+  border-color: red;
+  color: red;
+  background-color: #282c34;
 }

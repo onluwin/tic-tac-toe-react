@@ -14,10 +14,8 @@ export const calculateWinner = (squares, setIsDraw) => {
     const [a, b, c] = lines[i];
     // console.log("a b c", a, b, c);
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      console.log("squares[a]", squares[a]);
-      // console.log("squares[b]", squares[b]);
-      // console.log("squares[c]", squares[c]);
-      console.log("a b c", a, b, c);
+      // console.log("squares[a]", squares[a]);
+      // console.log("a b c", a, b, c);
       return { winner: squares[a], winningLine: [a, b, c] };
 
       // return squares[a];
@@ -25,7 +23,7 @@ export const calculateWinner = (squares, setIsDraw) => {
   }
 
   if (!squares.includes(null)) {
-    console.log("draw");
+    // console.log("draw");
     setIsDraw(true);
     return { winner: null, winningLine: [] };
   }

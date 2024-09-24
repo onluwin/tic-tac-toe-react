@@ -4,9 +4,9 @@ import { Board } from "./Board";
 import toast from "react-hot-toast";
 import { calculateWinner } from "../Utils/calculateWinner";
 import { startNewGame } from "../Utils/startNewGame";
-import { checkDiagonalWin } from "../Utils/checkDiagonalWin";
-import { checkVerticalWin } from "../Utils/checkVerticalWin";
-import { botMove, timerId } from "../Utils/botMove";
+import { botMove, timerId } from "../Utils/bot/botMove";
+import { playerMove } from "../Utils/playerMove";
+import { defineWinType } from "../Utils/defineWinType";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -15,123 +15,114 @@ export const Game = () => {
   const [isDraw, setIsDraw] = useState(false);
   const [isBotEnabled, setIsBotEnabled] = useState(true);
 
-  // CALCULATE WINNER
+  const [isGameActive, setIsGameActive] = useState(false);
 
   useEffect(() => {
-    const res = calculateWinner(board, setIsDraw);
-    // console.log("res", res);
-    try {
-      setResult(res);
-    } catch (error) {
-      console.warn(error);
+    if (board.every((elem) => elem === null)) {
+      return;
     }
+    if (isXnext || !isBotEnabled) {
+      return;
+    }
+
+    console.log("useEffect");
+    botMove(board, setBoard, setisXnext);
+  }, [board, isBotEnabled, isXnext]);
+
+  useEffect(() => {
+    const res = calculateWinner(board);
+
+    if (res.winner) {
+      console.log("res", res);
+      clearTimeout(timerId);
+      const winType = defineWinType(res.winningLine);
+
+      // ВЫНЕСТИ В ФУНКЦИЮ
+      switch (winType) {
+        case "vertical":
+          res.winningLine.forEach((elemId) => {
+            document.getElementById(elemId).classList.add("winner", "vertical");
+          });
+          break;
+
+        case "horizontal":
+          res.winningLine.forEach((elemId) => {
+            document
+              .getElementById(elemId)
+              .classList.add("winner", "horizontal");
+          });
+          break;
+
+        case "diagonal-right":
+          res.winningLine.forEach((elemId) => {
+            document
+              .getElementById(elemId)
+              .classList.add("winner", "diagonal-right");
+          });
+          break;
+
+        case "diagonal-left":
+          res.winningLine.forEach((elemId) => {
+            document
+              .getElementById(elemId)
+              .classList.add("winner", "diagonal-left");
+          });
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    switch (res.winner) {
+      case "draw":
+        setIsDraw(true);
+        toast("Unentschieden");
+        break;
+      case "X":
+        toast.success("X hat gewonnen");
+        setResult({ winner: "X" });
+
+        break;
+      case "O":
+        toast.success("O hat gewonnen");
+        setResult({ winner: "O" });
+        break;
+
+      default:
+        break;
+    }
+
+    console.log("res", res);
   }, [board]);
 
-  // WIN LOGIC
-
   useEffect(() => {
-    if (!result.winner || !result.winningLine) {
-      return;
-    }
-    // console.log("result.winningLine", result.winningLine);
-
-    let isDiagonalWin = checkDiagonalWin(result.winningLine);
-    const isVerticalWin = checkVerticalWin(result.winningLine);
-
-    // console.log("isDiagonalWin", isDiagonalWin);
-
-    const squaresRefs = document.querySelectorAll(".square");
-
-    if (isDiagonalWin.result) {
-      result.winningLine.forEach((winningIndex) => {
-        const winningSquaresRef = squaresRefs[winningIndex];
-
-        return isDiagonalWin.direction === "right"
-          ? winningSquaresRef.classList.add("winner", "diagonal-right")
-          : winningSquaresRef.classList.add("winner", "diagonal-left");
-      });
-    } else if (isVerticalWin) {
-      result.winningLine.forEach((winningIndex) => {
-        squaresRefs[winningIndex].classList.add("winner", "vertical");
-      });
-    } else {
-      result.winningLine.forEach((winningIndex) => {
-        squaresRefs[winningIndex].classList.add("winner");
-      });
-    }
-
-    toast.success(`${result.winner} hat gewonnen`, {
-      duration: 1500,
-    });
-  }, [result.winner, result.winningLine]);
-
-  // DRAW LOGIC
-
-  useEffect(() => {
-    if (!isDraw) {
-      return;
-    }
-    toast.error(`Unentschieden`, {
-      duration: 1500,
-    });
-  }, [isDraw]);
-
-  // BOT LOGIC
-
-  useEffect(() => {
-    let isGameOver = isDraw || Boolean(result.winner);
-    // console.log("isGameOver", isGameOver);
-    if (isGameOver) {
-      clearTimeout(timerId);
-      return;
-    }
-    // console.log("BOT MOVES");
-    const btnRefs = document.querySelectorAll(".square");
-    if (isBotEnabled && !isXnext && !result.winner) {
-      botMove(board, setBoard, setisXnext);
-
-      btnRefs.forEach((btn) => (btn.style.pointerEvents = "none"));
-    }
-    return () => {
-      btnRefs.forEach((btn) => (btn.style.pointerEvents = "auto"));
-    };
-  }, [board, isBotEnabled, isDraw, isXnext, result.winner]);
-
-  // CHANGING GAME MODE ABILITY
-
-  useEffect(() => {
-    // console.log("board", board);
-    const isGameStarted = board.some((element) => element !== null);
-    // console.log("isGameStarted", isGameStarted);
     const enableBotBtnRef = document.querySelector(".enableBotBtn");
-    if (isGameStarted) {
+
+    if (isGameActive) {
       enableBotBtnRef.classList.add("not-active");
     } else {
       enableBotBtnRef.classList.remove("not-active");
     }
-  }, [board]);
+  }, [board, isGameActive]);
 
   const clickHandler = (index) => {
-    const boardCopy = [...board];
     if (result.winner || isDraw) {
-      return toast.error("Das Spiel ist beendet", {
-        duration: 1500,
-      });
+      return;
     }
-    if (result.winner || boardCopy[index]) {
-      toast("Sie haben es schon benutzt", {
-        duration: 1500,
-      });
-      // console.log("boardCopy", boardCopy);
-      return null;
-    } else {
-      const button = document.getElementById(index);
-      button.textContent = isXnext ? "X" : "O";
-      setisXnext(!isXnext);
-      boardCopy[index] = isXnext ? "X" : "O";
-      setBoard(boardCopy);
-      // setIsBotMoving(true);
-    }
+    setIsGameActive(true);
+    playerMove(
+      index,
+      board,
+      result.winner,
+      isDraw,
+      isXnext,
+      setIsDraw,
+      isGameActive,
+      setIsGameActive,
+      setBoard
+    );
+    setisXnext(!isXnext);
   };
 
   return (
@@ -140,14 +131,20 @@ export const Game = () => {
         type="button"
         className="restartBtn"
         onClick={() => {
-          startNewGame(setBoard, setisXnext, setIsDraw, setResult);
+          startNewGame(
+            setBoard,
+            setisXnext,
+            setIsDraw,
+            setResult,
+            setIsGameActive
+          );
         }}
       >
         Noch einmal spielen
       </button>
       <Board
         squares={board}
-        onClick={clickHandler}
+        onClick={(e) => clickHandler(e)}
         winner={result.winner}
         isDraw={isDraw}
         isXnext={isXnext}

@@ -1,14 +1,17 @@
 export function checkVerticalWin(winningLine) {
-  // Возможные вертикальные линии
-  const vertical1 = [0, 3, 6];
-  const vertical2 = [1, 4, 7];
-  const vertical3 = [2, 5, 8];
+  const verticalLines = [
+    { line: [0, 3, 6], name: "vertical1" },
+    { line: [1, 4, 7], name: "vertical2" },
+    { line: [2, 5, 8], name: "vertical3" },
+  ];
 
-  // Проверяем, является ли line одной из вертикальных линий
-  return (
-    winningLine.length === 3 &&
-    (winningLine.every((val, index) => val === vertical1[index]) ||
-      winningLine.every((val, index) => val === vertical2[index]) ||
-      winningLine.every((val, index) => val === vertical3[index]))
+  if (winningLine.length !== 3) {
+    return { result: false, winningIndex: null };
+  }
+
+  const foundLine = verticalLines.find((vertical) =>
+    winningLine.every((val, index) => val === vertical.line[index])
   );
+
+  return foundLine ? true : false;
 }

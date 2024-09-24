@@ -23,9 +23,7 @@ export const calculateWinner = (squares, setIsDraw) => {
   }
 
   if (!squares.includes(null)) {
-    // console.log("draw");
-    setIsDraw(true);
-    return { winner: null, winningLine: [] };
+    return { winner: "draw", winningLine: [] };
   }
 
   return { winner: null, winningLine: [] };

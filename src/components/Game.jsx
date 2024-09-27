@@ -17,7 +17,7 @@ export const Game = () => {
 
   const [isGameActive, setIsGameActive] = useState(false);
 
-  const [difficultyLevel, setDifficultyLevel] = useState("impossible");
+  const [difficultyLevel, setDifficultyLevel] = useState("Easy");
 
   useEffect(() => {
     if (board.every((elem) => elem === null)) {
@@ -124,26 +124,59 @@ export const Game = () => {
     );
   };
 
+  // const selectDifficultyHandler = (e) => {
+  //   console.log(e.target.value);
+  //   setDifficultyLevel(e.target.value);
+  // };
+
   return (
     <div className="wrapper">
-      {board.some((elem) => elem !== null) && (
-        <button
-          type="button"
-          className="restartBtn"
-          onClick={() => {
-            startNewGame(
-              setBoard,
-              setisXnext,
-              setIsDraw,
-              setResult,
-              setIsGameActive
-            );
-          }}
-        >
-          Noch einmal spielen
-        </button>
-      )}
+      {/* <div class="dropdown">
+        <button class="dropbtn">Wählen Sie Schwierigkeit aus</button>
+        <div class="dropdown-content">
+          <option href="" data-value="Easy">
+            Easy
+          </option>
+          <option href="" data-value="Normal">
+            Normal
+          </option>
+          <option href="" data-value="Impossible">
+            Impossible
+          </option>
+        </div>
+      </div> */}
 
+      <div className="difficultyContainer">
+        <select
+          onChange={(e) => setDifficultyLevel(e.target.value)}
+          className="difficultySelect"
+          value={difficultyLevel}
+        >
+          <option data-value="Easy">Easy</option>
+          <option data-value="Normal">Normal</option>
+          <option data-value="Impossible">Impossible</option>
+        </select>
+      </div>
+
+      <div className="btnContainer">
+        {board.some((elem) => elem !== null) && (
+          <button
+            type="button"
+            className="restartBtn"
+            onClick={() => {
+              startNewGame(
+                setBoard,
+                setisXnext,
+                setIsDraw,
+                setResult,
+                setIsGameActive
+              );
+            }}
+          >
+            Noch einmal spielen
+          </button>
+        )}
+      </div>
       <Board
         squares={board}
         onClick={(e) => clickHandler(e)}

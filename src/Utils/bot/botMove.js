@@ -10,14 +10,14 @@ export const botMove = (board, setBoard, setisXnext, difficultyLevel) => {
   btnRefs.forEach((btn) => (btn.style.pointerEvents = "none"));
 
   switch (difficultyLevel) {
-    case "easy":
+    case "Easy":
       easyMode(copyBoard, board);
       break;
 
-    case "normal":
+    case "Normal":
       break;
 
-    case "impossible":
+    case "Impossible":
       impossibleMode(copyBoard, board);
       break;
 

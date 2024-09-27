@@ -7,6 +7,69 @@
   flex-direction: column;
 }
 
+/* DROPDOWN */
+
+/* Стили для кнопки */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dropbtn:hover {
+  background-color: #45a049;
+}
+
+/* Контейнер для выпадающего списка */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Стили для выпадающего содержимого */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  /* min-width: 160px; */
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+/* Ссылки внутри выпадающего списка */
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 5px;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Показываем выпадающий список при наведении */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  /* width: 10px; */
+  height: 10px;
+  margin-bottom: 75px;
+}
+
 .restartBtn {
   /* margin-bottom: 50px; */
   width: 230px;
@@ -31,4 +94,35 @@
     width: 180px;
     font-size: 17px;
   }
+}
+
+.difficultyContainer {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.difficultySelect {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.difficultySelect:hover {
+  border-color: #007bff;
+}
+option {
+  padding: 10px;
+  color: #333;
 }

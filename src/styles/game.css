@@ -8,7 +8,7 @@
 }
 
 .restartBtn {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   width: 230px;
   height: 60px;
   cursor: pointer;
@@ -17,6 +17,7 @@
   color: #fff;
   transition: border, color, 500ms;
   background-color: #282c34;
+  /* margin-top: 230px; */
 }
 .restartBtn:hover {
   border: 3px solid #fff;

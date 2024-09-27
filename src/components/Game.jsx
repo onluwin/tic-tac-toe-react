@@ -17,6 +17,8 @@ export const Game = () => {
 
   const [isGameActive, setIsGameActive] = useState(false);
 
+  const [difficultyLevel, setDifficultyLevel] = useState("impossible");
+
   useEffect(() => {
     if (board.every((elem) => elem === null)) {
       return;
@@ -26,8 +28,8 @@ export const Game = () => {
     }
 
     console.log("useEffect");
-    botMove(board, setBoard, setisXnext);
-  }, [board, isBotEnabled, isXnext]);
+    botMove(board, setBoard, setisXnext, difficultyLevel);
+  }, [board, difficultyLevel, isBotEnabled, isXnext]);
 
   useEffect(() => {
     const res = calculateWinner(board);
@@ -117,31 +119,31 @@ export const Game = () => {
       result.winner,
       isDraw,
       isXnext,
-      setIsDraw,
-      isGameActive,
-      setIsGameActive,
-      setBoard
+      setBoard,
+      setisXnext
     );
-    setisXnext(!isXnext);
   };
 
   return (
     <div className="wrapper">
-      <button
-        type="button"
-        className="restartBtn"
-        onClick={() => {
-          startNewGame(
-            setBoard,
-            setisXnext,
-            setIsDraw,
-            setResult,
-            setIsGameActive
-          );
-        }}
-      >
-        Noch einmal spielen
-      </button>
+      {board.some((elem) => elem !== null) && (
+        <button
+          type="button"
+          className="restartBtn"
+          onClick={() => {
+            startNewGame(
+              setBoard,
+              setisXnext,
+              setIsDraw,
+              setResult,
+              setIsGameActive
+            );
+          }}
+        >
+          Noch einmal spielen
+        </button>
+      )}
+
       <Board
         squares={board}
         onClick={(e) => clickHandler(e)}

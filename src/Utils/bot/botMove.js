@@ -1,27 +1,28 @@
+import { easyMode } from "./difficulties/easyMode";
+import { impossibleMode } from "./difficulties/impossibleMode";
 import { minimax } from "./minimax";
 
 export let timerId;
 
-export const botMove = (board, setBoard, setisXnext) => {
+export const botMove = (board, setBoard, setisXnext, difficultyLevel) => {
+  const copyBoard = [...board];
   const btnRefs = document.querySelectorAll(".square");
   btnRefs.forEach((btn) => (btn.style.pointerEvents = "none"));
-  let bestScore = -Infinity;
-  let move;
 
-  const copyBoard = [...board];
+  switch (difficultyLevel) {
+    case "easy":
+      easyMode(copyBoard, board);
+      break;
 
-  for (let i = 0; i < board.length; i++) {
-    if (copyBoard[i] === null) {
-      copyBoard[i] = "O";
-      let score = minimax(copyBoard, 0, false);
-      copyBoard[i] = null;
-      if (score > bestScore) {
-        bestScore = score;
-        move = i;
-      }
-    }
+    case "normal":
+      break;
+
+    case "impossible":
+      impossibleMode(copyBoard, board);
+      break;
+
+    default:
   }
-  copyBoard[move] = "O";
 
   timerId = setTimeout(() => {
     setBoard(copyBoard);

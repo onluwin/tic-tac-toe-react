@@ -17,7 +17,8 @@ export const Game = () => {
 
   const [isGameActive, setIsGameActive] = useState(false);
 
-  const [difficultyLevel, setDifficultyLevel] = useState("Easy");
+  const [difficultyLevel, setDifficultyLevel] = useState("Normal");
+  const [scoreCounter, setScoreCounter] = useState({ x: 0, o: 0, draws: 0 });
 
   useEffect(() => {
     if (board.every((elem) => elem === null)) {
@@ -29,7 +30,7 @@ export const Game = () => {
 
     console.log("useEffect");
     botMove(board, setBoard, setisXnext, difficultyLevel);
-  }, [board, difficultyLevel, isBotEnabled, isXnext]);
+  }, [board, isBotEnabled, isXnext]);
 
   useEffect(() => {
     const res = calculateWinner(board);
@@ -80,22 +81,36 @@ export const Game = () => {
       case "draw":
         setIsDraw(true);
         toast("Unentschieden");
+        setScoreCounter({ ...scoreCounter, draws: scoreCounter.draws + 1 });
         break;
       case "X":
+        console.log(scoreCounter);
+
         toast.success("X hat gewonnen");
         setResult({ winner: "X" });
+        setScoreCounter({ ...scoreCounter, x: scoreCounter.x + 1 });
 
         break;
       case "O":
+        console.log(scoreCounter);
         toast.success("O hat gewonnen");
         setResult({ winner: "O" });
+        setScoreCounter({ ...scoreCounter, o: scoreCounter.o + 1 });
+
         break;
 
       default:
         break;
     }
+  }, [board]);
 
-    console.log("res", res);
+  useEffect(() => {
+    const ref = document.querySelector(".difficultyContainer > select");
+    if (board.filter((cell) => cell === null).length !== 9) {
+      ref.id = "difficulty-not-active";
+    } else {
+      ref.id = null;
+    }
   }, [board]);
 
   useEffect(() => {
@@ -146,17 +161,33 @@ export const Game = () => {
         </div>
       </div> */}
 
-      <div className="difficultyContainer">
-        <select
-          onChange={(e) => setDifficultyLevel(e.target.value)}
-          className="difficultySelect"
-          value={difficultyLevel}
-        >
-          <option data-value="Easy">Easy</option>
-          <option data-value="Normal">Normal</option>
-          <option data-value="Impossible">Impossible</option>
-        </select>
+      <div
+        className="counterWrapper"
+        onClick={() => {
+          setScoreCounter({ x: 0, o: 0, draws: 0 });
+        }}
+      >
+        <p>
+          {isBotEnabled
+            ? `Spieler: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} / AI: ${scoreCounter.o}`
+            : `X: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} O: ${scoreCounter.o}`}
+        </p>
       </div>
+
+      {isBotEnabled && (
+        <div className="difficultyContainer">
+          <select
+            onChange={(e) => setDifficultyLevel(e.target.value)}
+            className="difficultySelect"
+            value={difficultyLevel}
+          >
+            <option data-value="Easy">Easy</option>
+            <option data-value="Normal">Normal</option>
+            <option data-value="Hard">Hard</option>
+            <option data-value="Impossible">Impossible</option>
+          </select>
+        </div>
+      )}
 
       <div className="btnContainer">
         {board.some((elem) => elem !== null) && (

@@ -1,6 +1,7 @@
 import { easyMode } from "./difficulties/easyMode";
+import { hardMode } from "./difficulties/hardMode";
 import { impossibleMode } from "./difficulties/impossibleMode";
-import { minimax } from "./minimax";
+import { normalMode } from "./difficulties/normalMode";
 
 export let timerId;
 
@@ -15,6 +16,11 @@ export const botMove = (board, setBoard, setisXnext, difficultyLevel) => {
       break;
 
     case "Normal":
+      normalMode(copyBoard, board);
+      break;
+
+    case "Hard":
+      hardMode(copyBoard, board);
       break;
 
     case "Impossible":

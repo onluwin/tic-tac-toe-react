@@ -1,7 +1,7 @@
 import { minimax } from "../minimax";
 import { easyMode } from "./easyMode";
 
-export const normalMode = (copyBoard, board) => {
+export const hardMode = (copyBoard, board) => {
   let bestScore = -Infinity;
   let move;
 
@@ -22,7 +22,7 @@ export const normalMode = (copyBoard, board) => {
 
   // Final move
 
-  randomNumber < 0.7 ? (copyBoard[move] = "O") : easyMode(copyBoard, board);
+  randomNumber < 0.85 ? (copyBoard[move] = "O") : easyMode(copyBoard, board);
 
   // Complicated option
 

@@ -12,7 +12,6 @@ export const Board = ({
   setIsBotEnabled,
   isBotEnabled,
 }) => {
-  // console.log("winner", winner);
   return (
     <div className="board">
       <div className="x">

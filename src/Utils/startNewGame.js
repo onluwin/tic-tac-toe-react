@@ -5,7 +5,8 @@ export const startNewGame = (
   setisXnext,
   setWinner,
   setIsDraw,
-  setIsGameActive
+  setIsGameActive,
+  setScoreCounter
 ) => {
   const btnRefs = document.querySelectorAll(".square");
 

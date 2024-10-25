@@ -24,13 +24,13 @@
 }
 
 .enableBotBtn {
+  width: 100px;
   height: 40px;
   margin: auto;
   /* margin-left: 35px; */
   background-color: #282c34;
   border: 2px solid #fff;
   color: #fff;
-  width: 100px;
   cursor: pointer;
   transition: border, color, 500ms;
   font-size: 15px;

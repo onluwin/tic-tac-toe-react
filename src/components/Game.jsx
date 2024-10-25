@@ -161,17 +161,21 @@ export const Game = () => {
         </div>
       </div> */}
 
-      <div
-        className="counterWrapper"
-        onClick={() => {
-          setScoreCounter({ x: 0, o: 0, draws: 0 });
-        }}
-      >
-        <p>
+      <div>
+        <p className="scoreText">
           {isBotEnabled
             ? `Spieler: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} / AI: ${scoreCounter.o}`
             : `X: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} O: ${scoreCounter.o}`}
         </p>
+        <button
+          className="scoreResetBtn"
+          type="button"
+          onClick={() => {
+            setScoreCounter({ x: 0, o: 0, draws: 0 });
+          }}
+        >
+          Reset score
+        </button>
       </div>
 
       {isBotEnabled && (

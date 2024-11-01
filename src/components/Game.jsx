@@ -8,7 +8,6 @@ import { startNewGame } from "../Utils/startNewGame";
 import { botMove, timerId } from "../Utils/bot/botMove";
 import { playerMove } from "../Utils/playerMove";
 import { defineWinType } from "../Utils/defineWinType";
-import socket from "../Utils/socket";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -167,7 +166,6 @@ export const Game = () => {
           Reset score
         </button>
       </div>
-
       {mode === "bot" && (
         <div className="difficultyContainer">
           <select
@@ -182,9 +180,8 @@ export const Game = () => {
           </select>
         </div>
       )}
-
-      <div className="btnContainer">
-        {board.some((elem) => elem !== null) && (
+      {/* <div className="btnContainer"> */}
+      {/* {board.some((elem) => elem !== null) && (
           <button
             type="button"
             className="restartBtn"
@@ -200,8 +197,8 @@ export const Game = () => {
           >
             Noch einmal spielen
           </button>
-        )}
-      </div>
+        )} */}
+      {/* </div> */}
       <Board
         squares={board}
         onClick={(e) => clickHandler(e)}
@@ -212,7 +209,7 @@ export const Game = () => {
         setMode={setMode}
         mode={mode}
       />
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           // console.log("went");
@@ -228,7 +225,24 @@ export const Game = () => {
         }}
       >
         HTTP
-      </button>
+      </button> */}
+      {board.some((elem) => elem !== null) && (
+        <button
+          type="button"
+          className="restartBtn"
+          onClick={() => {
+            startNewGame(
+              setBoard,
+              setisXnext,
+              setIsDraw,
+              setResult,
+              setIsGameActive
+            );
+          }}
+        >
+          Noch einmal spielen
+        </button>
+      )}
     </div>
   );
 };

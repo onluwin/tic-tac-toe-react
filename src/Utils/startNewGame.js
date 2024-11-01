@@ -27,4 +27,5 @@ export const startNewGame = (
   setWinner(null);
   setIsGameActive(false);
   clearTimeout(timerId);
+  // setScoreCounter({ x: 0, o: 0, draws: 0 });
 };

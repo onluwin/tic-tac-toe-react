@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "../styles/game.css";
 import { Board } from "./Board";
 import toast from "react-hot-toast";
@@ -7,13 +8,15 @@ import { startNewGame } from "../Utils/startNewGame";
 import { botMove, timerId } from "../Utils/bot/botMove";
 import { playerMove } from "../Utils/playerMove";
 import { defineWinType } from "../Utils/defineWinType";
+import socket from "../Utils/socket";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
+  const [mode, setMode] = useState("bot");
   const [isXnext, setisXnext] = useState(true);
   const [result, setResult] = useState({ winner: "", winningLine: [] });
   const [isDraw, setIsDraw] = useState(false);
-  const [isBotEnabled, setIsBotEnabled] = useState(true);
+  // const [isBotEnabled, setIsBotEnabled] = useState(true);
 
   const [isGameActive, setIsGameActive] = useState(false);
 
@@ -24,13 +27,13 @@ export const Game = () => {
     if (board.every((elem) => elem === null)) {
       return;
     }
-    if (isXnext || !isBotEnabled) {
+    if (isXnext || mode !== "bot") {
       return;
     }
 
     console.log("useEffect");
     botMove(board, setBoard, setisXnext, difficultyLevel);
-  }, [board, isBotEnabled, isXnext]);
+  }, [board, mode, isXnext]);
 
   useEffect(() => {
     const res = calculateWinner(board);
@@ -106,6 +109,9 @@ export const Game = () => {
 
   useEffect(() => {
     const ref = document.querySelector(".difficultyContainer > select");
+    if (!ref) {
+      return;
+    }
     if (board.filter((cell) => cell === null).length !== 9) {
       ref.id = "difficulty-not-active";
     } else {
@@ -123,6 +129,10 @@ export const Game = () => {
     }
   }, [board, isGameActive]);
 
+  useEffect(() => {
+    console.log("board", board);
+  }, [board]);
+
   const clickHandler = (index) => {
     if (result.winner || isDraw) {
       return;
@@ -139,31 +149,11 @@ export const Game = () => {
     );
   };
 
-  // const selectDifficultyHandler = (e) => {
-  //   console.log(e.target.value);
-  //   setDifficultyLevel(e.target.value);
-  // };
-
   return (
     <div className="wrapper">
-      {/* <div class="dropdown">
-        <button class="dropbtn">Wählen Sie Schwierigkeit aus</button>
-        <div class="dropdown-content">
-          <option href="" data-value="Easy">
-            Easy
-          </option>
-          <option href="" data-value="Normal">
-            Normal
-          </option>
-          <option href="" data-value="Impossible">
-            Impossible
-          </option>
-        </div>
-      </div> */}
-
       <div>
         <p className="scoreText">
-          {isBotEnabled
+          {mode === "bot"
             ? `Spieler: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} / AI: ${scoreCounter.o}`
             : `X: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} O: ${scoreCounter.o}`}
         </p>
@@ -178,7 +168,7 @@ export const Game = () => {
         </button>
       </div>
 
-      {isBotEnabled && (
+      {mode === "bot" && (
         <div className="difficultyContainer">
           <select
             onChange={(e) => setDifficultyLevel(e.target.value)}
@@ -218,9 +208,27 @@ export const Game = () => {
         winner={result.winner}
         isDraw={isDraw}
         isXnext={isXnext}
-        isBotEnabled={isBotEnabled}
-        setIsBotEnabled={setIsBotEnabled}
+        isBotEnabled={mode === "bot"}
+        setMode={setMode}
+        mode={mode}
       />
+      <button
+        type="button"
+        onClick={() => {
+          // console.log("went");
+          // socket.on("gameState", (state) => {
+          //   console.log("HTTP went successfuly");
+          //   console.log("state", state);
+          //   setBoard(state);
+          //   setIsXNext(state.filter(Boolean).length % 2 === 0);
+          // });
+          socket.emit("hello", "world", (response) => {
+            console.log(response); // "got it"
+          });
+        }}
+      >
+        HTTP
+      </button>
     </div>
   );
 };

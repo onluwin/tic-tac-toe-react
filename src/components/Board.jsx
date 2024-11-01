@@ -9,8 +9,8 @@ export const Board = ({
   winner,
   isDraw,
   isXnext,
-  setIsBotEnabled,
-  isBotEnabled,
+  setMode,
+  mode,
 }) => {
   return (
     <div className="board">
@@ -32,9 +32,9 @@ export const Board = ({
         <button
           type="button"
           className="enableBotBtn"
-          onClick={() => setIsBotEnabled(!isBotEnabled)}
+          onClick={() => setMode(mode === "bot" ? "one-player" : "bot")}
         >
-          BOT: {isBotEnabled ? "ON" : "OFF"}
+          BOT: {mode === "bot" ? "ON" : "OFF"}
         </button>
       </div>
     </div>

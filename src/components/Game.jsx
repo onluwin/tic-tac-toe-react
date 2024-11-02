@@ -209,23 +209,7 @@ export const Game = () => {
         setMode={setMode}
         mode={mode}
       />
-      {/* <button
-        type="button"
-        onClick={() => {
-          // console.log("went");
-          // socket.on("gameState", (state) => {
-          //   console.log("HTTP went successfuly");
-          //   console.log("state", state);
-          //   setBoard(state);
-          //   setIsXNext(state.filter(Boolean).length % 2 === 0);
-          // });
-          socket.emit("hello", "world", (response) => {
-            console.log(response); // "got it"
-          });
-        }}
-      >
-        HTTP
-      </button> */}
+
       {board.some((elem) => elem !== null) && (
         <button
           type="button"

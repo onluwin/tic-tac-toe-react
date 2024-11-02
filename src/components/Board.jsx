@@ -32,7 +32,7 @@ export const Board = ({
         <button
           type="button"
           className="enableBotBtn"
-          onClick={() => setMode(mode === "bot" ? "one-player" : "bot")}
+          onClick={() => setMode(mode === "bot" ? "single-player" : "bot")}
         >
           BOT: {mode === "bot" ? "ON" : "OFF"}
         </button>

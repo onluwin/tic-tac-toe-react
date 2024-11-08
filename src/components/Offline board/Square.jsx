@@ -1,4 +1,4 @@
-import "../styles/square.css";
+import "../../styles/square.css";
 
 export const Square = ({ clickHandler, value, id }) => {
   // if (!value) {

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import "../styles/game.css";
+import "../../styles/game.css";
 import { Board } from "./Board";
 import toast from "react-hot-toast";
-import { calculateWinner } from "../Utils/calculateWinner";
-import { startNewGame } from "../Utils/startNewGame";
-import { botMove, timerId } from "../Utils/bot/botMove";
-import { playerMove } from "../Utils/playerMove";
-import { defineWinType } from "../Utils/defineWinType";
+import { calculateWinner } from "../../Utils/calculateWinner";
+import { startNewGame } from "../../Utils/startNewGame";
+import { botMove, timerId } from "../../Utils/bot/botMove";
+import { playerMove } from "../../Utils/playerMove";
+import { defineWinType } from "../../Utils/defineWinType";
 
 export const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));

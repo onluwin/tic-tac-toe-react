@@ -1,7 +1,11 @@
 import React from "react";
 import { Square } from "./Square";
 
-import "../styles/board.css";
+import "../../styles/board.css";
+
+// import { Square } from "./Square";
+
+// import "../styles/board.css";
 
 export const Board = ({
   squares,

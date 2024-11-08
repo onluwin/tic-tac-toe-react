@@ -55,6 +55,7 @@ export const Online = () => {
 
               console.log("foundRoom.roomId", foundRoom.roomId);
 
+              //   socket.emit("joinRoom", foundRoom.roomId);
               setCurrentRoomId(foundRoom.roomId);
               navigate(`room/${foundRoom.roomId}`);
             }

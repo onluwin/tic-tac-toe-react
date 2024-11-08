@@ -1,10 +1,10 @@
 import { Toaster } from "react-hot-toast";
 
 import "./App.css";
-import { Game } from "./components/Game";
+import { Game } from "./components/Offline board/Game";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./pages/MainLayout";
-import { SelectGameMode } from "./components/SelectGameMode";
+import { SelectGameMode } from "./components/Offline board/SelectGameMode";
 import { Online } from "./pages/Online";
 import { GameRoom } from "./pages/GameRoom";
 function App() {

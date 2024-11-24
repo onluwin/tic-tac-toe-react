@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 import socket from "../Utils/socket";
+import axios from "axios";
 
 export const Online = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -9,27 +10,45 @@ export const Online = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [currentRoomId, setCurrentRoomId] = useState(null);
   const navigate = useNavigate();
+
   const { roomId } = useParams();
+
+  useEffect(() => {
+    console.log("currentRoomId", currentRoomId);
+    if (!currentRoomId) {
+      return;
+    }
+    navigate(`/online/room/${currentRoomId}`);
+  }, [currentRoomId]);
+
   if (roomId) {
-    return <Outlet />; // Рендерим только GameRoom
+    return <Outlet board={board} />; // Рендерим только GameRoom
   }
 
-  //   useEffect(() => {
-  //     if (!currentRoomId) {
-  //       return;
-  //     }
-  //     navigate(`/room/${currentRoomId}`);
-  //   }, [currentRoomId]);
-
-  const createRoomClickHandler = () => {
+  const createRoomClickHandler = async () => {
     // socket.emit("createNewRoom", arg, (response) => {
     //   console.log("response", response);
     // });
-    socket.emit("createNewRoom", (response) => {
-      console.log(response); // Здесь вы обрабатываете ответ
-      navigate(`room/${response.roomId}`);
-      setCurrentRoomId(response.roomId);
-    });
+
+    axios
+      .post("http://localhost:3001/api/rooms", { userId: socket.id })
+      .then(({ data }) => {
+        console.log("Ответ от сервера:", data);
+        setBoard(data.board);
+        setCurrentRoomId(data.roomId);
+      })
+      .catch((error) => {
+        console.error("Ошибка при запросе:", error);
+      });
+
+    // socket.emit("createNewRoom", (response) => {
+    //   console.log("response", response); // Здесь вы обрабатываете ответ
+
+    //   if (response.ok) {
+    //     setCurrentRoomId(response.roomId);
+    //     navigate(`room/${response.roomId}`);
+    //   }
+    // });
   };
 
   return (
@@ -43,23 +62,25 @@ export const Online = () => {
             return;
           }
 
-          socket.emit(
-            "connectToRoomById",
-            inputValue.toUpperCase(),
-            ({ ok, msg, foundRoom }) => {
-              setErrorMsg("");
-              if (!ok) {
-                return setErrorMsg(msg);
-              }
-              // console.log(msg);
+          axios.get(`http://localhost:3001/api/rooms/${roomId}`);
 
-              console.log("foundRoom.roomId", foundRoom.roomId);
+          // socket.emit(
+          //   "connectToRoomById",
+          //   inputValue.toUpperCase(),
+          //   ({ ok, msg, foundRoom }) => {
+          //     setErrorMsg("");
+          //     if (!ok) {
+          //       return setErrorMsg(msg);
+          //     }
+          //     // console.log(msg);
 
-              //   socket.emit("joinRoom", foundRoom.roomId);
-              setCurrentRoomId(foundRoom.roomId);
-              navigate(`room/${foundRoom.roomId}`);
-            }
-          );
+          //     console.log("foundRoom.roomId", foundRoom.roomId);
+
+          //     //   socket.emit("joinRoom", foundRoom.roomId);
+          //     setCurrentRoomId(foundRoom.roomId);
+          //     navigate(`room/${foundRoom.roomId}`);
+          //   }
+          // );
         }}
       >
         <input
@@ -75,28 +96,6 @@ export const Online = () => {
       </button>
 
       {errorMsg && <p style={{ color: "white" }}>{errorMsg}</p>}
-
-      {/* TESTS */}
-      {/* <button
-        type="button"
-        onClick={() => {
-          socket.emit("hello", "world", (response) => {
-            console.log(response); // "got it"
-          });
-        }}
-      >
-        HTTP
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          socket.emit("init", "12gfds54-gg", (response) => {
-            console.log(response); // "got it"
-          });
-        }}
-      >
-        Init
-      </button> */}
     </div>
   );
 };

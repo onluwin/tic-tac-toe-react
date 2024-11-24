@@ -1,7 +1,7 @@
 import React from "react";
 import { Square } from "./Square";
 
-import "../../styles/board.css";
+import "../styles/board.css";
 
 // import { Square } from "./Square";
 
@@ -15,6 +15,7 @@ export const Board = ({
   isXnext,
   setMode,
   mode,
+  onlineMode,
 }) => {
   return (
     <div className="board">
@@ -33,13 +34,15 @@ export const Board = ({
         {winner && <p className="gameResult">Gewonnen: {winner}</p>}
         {isDraw && <p className="gameResult">Unentschieden</p>}
 
-        <button
-          type="button"
-          className="enableBotBtn"
-          onClick={() => setMode(mode === "bot" ? "single-player" : "bot")}
-        >
-          BOT: {mode === "bot" ? "ON" : "OFF"}
-        </button>
+        {!onlineMode && (
+          <button
+            type="button"
+            className="enableBotBtn"
+            onClick={() => setMode(mode === "bot" ? "single-player" : "bot")}
+          >
+            BOT: {mode === "bot" ? "ON" : "OFF"}
+          </button>
+        )}
       </div>
     </div>
   );

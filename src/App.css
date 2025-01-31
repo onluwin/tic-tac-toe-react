@@ -16,7 +16,15 @@
 .app-wrapper {
   /* width: 100vh; */
   height: 100vh;
-  background-color: #282c34;
+  /* background-color: #282c34; */
+
+  background-image: url("./images/Mattehorn\ background\ photo.jpg");
+  background-size: 100%;
+
+  background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+
   /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
@@ -24,6 +32,13 @@
   justify-content: center;
   /* font-size: calc(10px + 2vmin); */
   color: white;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .app-wrapper {
+    background-color: #282c34;
+    background-image: none;
+  }
 }
 
 .App-link {

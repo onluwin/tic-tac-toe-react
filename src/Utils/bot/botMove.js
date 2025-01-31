@@ -34,5 +34,7 @@ export const botMove = (board, setBoard, setisXnext, difficultyLevel) => {
     setBoard(copyBoard);
     setisXnext(true);
     btnRefs.forEach((btn) => (btn.style.pointerEvents = "auto"));
+    const clickSound = new Audio("click-sound.wav"); // Замените на свой файл
+    clickSound.play();
   }, 500);
 };

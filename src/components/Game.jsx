@@ -8,8 +8,11 @@ import { startNewGame } from "../Utils/startNewGame";
 import { botMove, timerId } from "../Utils/bot/botMove";
 import { playerMove } from "../Utils/playerMove";
 import { defineWinType } from "../Utils/defineWinType";
+import { startRainEffect } from "../Utils/startRainEffect";
 
 export const Game = () => {
+  const [language, setLanguage] = useState("de");
+
   const [board, setBoard] = useState(Array(9).fill(null));
   const [mode, setMode] = useState("bot");
   const [isXnext, setisXnext] = useState(true);
@@ -31,6 +34,7 @@ export const Game = () => {
     }
 
     console.log("useEffect");
+    console.log("bot moves");
     botMove(board, setBoard, setisXnext, difficultyLevel);
   }, [board, mode, isXnext]);
 
@@ -77,6 +81,9 @@ export const Game = () => {
         default:
           break;
       }
+      const winnerSound = new Audio("winner sound.wav");
+      winnerSound.volume = 0.3; // Замените на свой файл
+      winnerSound.play();
     }
 
     switch (res.winner) {
@@ -87,6 +94,7 @@ export const Game = () => {
         break;
       case "X":
         console.log(scoreCounter);
+        startRainEffect("X");
 
         toast.success("X hat gewonnen");
         setResult({ winner: "X" });
@@ -94,6 +102,8 @@ export const Game = () => {
 
         break;
       case "O":
+        startRainEffect("O");
+
         console.log(scoreCounter);
         toast.success("O hat gewonnen");
         setResult({ winner: "O" });
@@ -153,7 +163,7 @@ export const Game = () => {
       <div>
         <p className="scoreText">
           {mode === "bot"
-            ? `Spieler: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} / AI: ${scoreCounter.o}`
+            ? `Spieler: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} / Computer: ${scoreCounter.o}`
             : `X: ${scoreCounter.x} / Unentschieden: ${scoreCounter.draws} O: ${scoreCounter.o}`}
         </p>
         <button
@@ -163,7 +173,7 @@ export const Game = () => {
             setScoreCounter({ x: 0, o: 0, draws: 0 });
           }}
         >
-          Reset score
+          Score zurücksetzen
         </button>
       </div>
       {mode === "bot" && (
@@ -209,6 +219,8 @@ export const Game = () => {
         setMode={setMode}
         mode={mode}
       />
+
+      <div id="rain"></div>
 
       {board.some((elem) => elem !== null) && (
         <button

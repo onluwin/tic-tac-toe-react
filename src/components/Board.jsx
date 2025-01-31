@@ -40,7 +40,7 @@ export const Board = ({
             className="enableBotBtn"
             onClick={() => setMode(mode === "bot" ? "single-player" : "bot")}
           >
-            BOT: {mode === "bot" ? "ON" : "OFF"}
+            BOT: {mode === "bot" ? "AN" : "AUS"}
           </button>
         )}
       </div>

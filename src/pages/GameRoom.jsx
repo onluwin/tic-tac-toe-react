@@ -20,7 +20,7 @@ export const GameRoom = () => {
     null,
   ]);
   const [isXNext, setIsXNext] = useState(true);
-  const [currentPlayer, setCurrentPlayer] = useState(null);
+  const [currentPlayer, setCurrentPlayer] = useState("X");
   const [winner, setWinner] = useState(null);
 
   // useEffect(() => {
@@ -121,13 +121,15 @@ export const GameRoom = () => {
       return console.log("exit");
     }
     boardCopy[i] = currentPlayer;
+    console.log("boardCopy", boardCopy);
 
     const newWinner = calculateWinner(boardCopy);
+    console.log("newWinner", newWinner);
 
     const newState = {
       board: boardCopy,
       currentPlayer: currentPlayer === "X" ? "O" : "X",
-      winner: newWinner,
+      winner: newWinner.winner,
     };
 
     setBoard(newState.board);

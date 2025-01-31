@@ -47,9 +47,9 @@ export const Home = () => {
   return (
     <>
       <nav>
-        <StyledLink to="/online">Online</StyledLink>
+        {/* <StyledLink to="/online">Online</StyledLink> */}
 
-        <StyledLink to="/offline">Offline</StyledLink>
+        <StyledLink to="/offline">Offline mode</StyledLink>
       </nav>
     </>
   );

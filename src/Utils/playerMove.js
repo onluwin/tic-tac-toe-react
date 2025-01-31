@@ -24,5 +24,8 @@ export const playerMove = (
     boardCopy[index] = statement;
     setBoard(boardCopy);
     setisXnext(!isXnext);
+    const clickSound = new Audio("click-sound.wav"); // Замените на свой файл
+    clickSound.volume = 1;
+    clickSound.play();
   }
 };

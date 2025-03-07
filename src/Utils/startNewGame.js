@@ -1,3 +1,5 @@
+import { clickSound, winnerSound } from "./audio/audios";
+import { pauseAudios } from "./audio/pauseAudios";
 import { timerId } from "./bot/botMove";
 
 export const startNewGame = (
@@ -27,5 +29,6 @@ export const startNewGame = (
   setWinner(null);
   setIsGameActive(false);
   clearTimeout(timerId);
+  pauseAudios(winnerSound, clickSound);
   // setScoreCounter({ x: 0, o: 0, draws: 0 });
 };

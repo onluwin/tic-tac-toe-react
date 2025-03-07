@@ -7,8 +7,12 @@ import { calculateWinner } from "../Utils/calculateWinner";
 import { startNewGame } from "../Utils/startNewGame";
 import { botMove, timerId } from "../Utils/bot/botMove";
 import { playerMove } from "../Utils/playerMove";
-import { defineWinType } from "../Utils/defineWinType";
+// import { defineWinType } from "../Utils/defineWinType";
+
 import { startRainEffect } from "../Utils/startRainEffect";
+import { winnerSound } from "../Utils/audio/audios";
+import { pauseAudios } from "../Utils/audio/pauseAudios";
+import { defineWinType } from "../Utils/winChecks/defineWinType.js";
 
 export const Game = () => {
   const [language, setLanguage] = useState("de");
@@ -81,8 +85,8 @@ export const Game = () => {
         default:
           break;
       }
-      const winnerSound = new Audio("winner sound.wav");
-      winnerSound.volume = 0.3; // Замените на свой файл
+
+      winnerSound.volume = 0.05; // Замените на свой файл
       winnerSound.play();
     }
 

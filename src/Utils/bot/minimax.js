@@ -1,4 +1,4 @@
-import { checkWinnerFull } from "../checkWinnerFull";
+import { checkWinnerFull } from "../winChecks/checkWinnerFull";
 
 export function minimax(copyBoard, depth, isMaximizing) {
   let winner = checkWinnerFull(copyBoard);

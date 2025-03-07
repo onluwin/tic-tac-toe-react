@@ -1,3 +1,5 @@
+export let rainEffectIntervalId;
+
 export function startRainEffect(symbol) {
   const rainContainer = document.getElementById("rain");
   const symbols = ["X", "O"]; // Символы для дождя
@@ -25,7 +27,7 @@ export function startRainEffect(symbol) {
   }
 
   // Запускаем добавление символов с интервалом
-  const interval = setInterval(() => {
+  rainEffectIntervalId = setInterval(() => {
     for (let i = 0; i < 5; i++) {
       createRainDrop(); // Создаём несколько символов одновременно
     }
@@ -33,7 +35,7 @@ export function startRainEffect(symbol) {
 
   // Останавливаем добавление новых символов через 5 секунд
   setTimeout(() => {
-    clearInterval(interval); // Останавливаем интервал
+    clearInterval(rainEffectIntervalId); // Останавливаем интервал
     // Очищаем все оставшиеся элементы дождя
     const remainingRainDrops = rainContainer.querySelectorAll(".symbol");
     remainingRainDrops.forEach((drop) => drop.remove());

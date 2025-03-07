@@ -7,12 +7,10 @@ import { calculateWinner } from "../Utils/calculateWinner";
 import { startNewGame } from "../Utils/startNewGame";
 import { botMove, timerId } from "../Utils/bot/botMove";
 import { playerMove } from "../Utils/playerMove";
-// import { defineWinType } from "../Utils/defineWinType";
 
 import { startRainEffect } from "../Utils/startRainEffect";
 import { winnerSound } from "../Utils/audio/audios";
-import { pauseAudios } from "../Utils/audio/pauseAudios";
-import { defineWinType } from "../Utils/winChecks/defineWinType.js";
+import { defineWinType } from "../Utils/winChecks/defineWinType";
 
 export const Game = () => {
   const [language, setLanguage] = useState("de");

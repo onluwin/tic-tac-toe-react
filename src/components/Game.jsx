@@ -8,7 +8,7 @@ import { startNewGame } from "../Utils/startNewGame";
 import { botMove, timerId } from "../Utils/bot/botMove";
 import { playerMove } from "../Utils/playerMove";
 
-import { startRainEffect } from "../Utils/startRainEffect";
+import { startRainEffect } from "../Utils/rainEffect/startRainEffect";
 import { winnerSound } from "../Utils/audio/audios";
 import { defineWinType } from "../Utils/winChecks/defineWinType";
 

@@ -2,7 +2,7 @@ import { clickSound, winnerSound } from "./audio/audios";
 import { pauseAudios } from "./audio/pauseAudios";
 import { timerId } from "./bot/botMove";
 import { stopRainEffect } from "./rainEffect/stopRainEffect";
-import { rainEffectIntervalId } from "./startRainEffect";
+import { rainEffectIntervalId } from "./rainEffect/startRainEffect";
 
 export const startNewGame = (
   setBoard,

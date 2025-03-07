@@ -3,7 +3,6 @@ export let rainEffectIntervalId;
 export function startRainEffect(symbol) {
   const rainContainer = document.getElementById("rain");
   const symbols = ["X", "O"]; // Символы для дождя
-  const rainCount = 50; // Максимальное количество символов на экране
 
   // Функция для добавления одного "капельного" символа
   function createRainDrop() {

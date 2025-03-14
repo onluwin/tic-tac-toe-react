@@ -2,6 +2,7 @@ import "../styles/square.css";
 import "../styles/rain.css";
 import x from "../images/X.png";
 import o from "../images/O.png";
+import { motion } from "framer-motion";
 
 export const Square = ({ clickHandler, value, id }) => {
   console.log(value);
@@ -14,21 +15,39 @@ export const Square = ({ clickHandler, value, id }) => {
       ></button>
     );
   }
-  // return (
-  //   <button onClick={() => clickHandler(id)} id={id} className="square">
-  //     {/* {value === "X" ? (
-  //       <img className="squareImg" alt="alternative X" src="./images/X.png" />
-  //     ) : (
-  //       <img className="squareImg" alt="O alternative" src="./images/O.png" />
-  //     )} */}
 
-  //     {value && value}
-  //   </button>
-  // );
+  // if (!value) {
+  //   return (
+  //     <motion.button
+  //       initial={{ scale: 0, opacity: 0 }}
+  //       animate={{ scale: 1, opacity: 1 }}
+  //       transition={{ duration: 0.3 }}
+  //       onClick={() => clickHandler(id)}
+  //       className="square"
+  //       id={id}
+  //     >
+  //       {value}
+  //     </motion.button>
+  //   );
 
   return (
-    <button onClick={() => clickHandler(id)} id={id} className="square">
-      {value && <img src={value === "X" ? x : o} className="square-pic" />}
+    <button onClick={() => clickHandler(id)} className="square" id={id}>
+      {value && (
+        <motion.img
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          src={value === "X" ? x : o}
+          className="square-pic"
+        />
+      )}
     </button>
   );
 };
+
+// return (
+//   <button onClick={() => clickHandler(id)} id={id} className="square">
+//     {value && <img src={value === "X" ? x : o} className="square-pic" />}
+//   </button>
+// );
+// };

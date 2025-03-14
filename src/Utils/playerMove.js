@@ -27,7 +27,12 @@ export const playerMove = (
     setBoard(boardCopy);
     setisXnext(!isXnext);
     // Замените на свой файл
-    clickSound.volume = 1;
-    clickSound.play();
+
+    try {
+      clickSound.volume = 1;
+      clickSound.play().catch((e) => console.log(e));
+    } catch (error) {
+      console.log(error);
+    }
   }
 };

@@ -1,3 +1,5 @@
+// import { clickSound } from "../audio/audios";
+import { clickSound } from "../audio/audios";
 import { easyMode } from "./difficulties/easyMode";
 import { hardMode } from "./difficulties/hardMode";
 import { impossibleMode } from "./difficulties/impossibleMode";
@@ -34,7 +36,7 @@ export const botMove = (board, setBoard, setisXnext, difficultyLevel) => {
     setBoard(copyBoard);
     setisXnext(true);
     btnRefs.forEach((btn) => (btn.style.pointerEvents = "auto"));
-    const clickSound = new Audio("click-sound.wav"); // Замените на свой файл
-    clickSound.play();
+
+    clickSound.play().catch((e) => console.log(e));
   }, 500);
 };

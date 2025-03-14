@@ -4,9 +4,12 @@ import "./App.css";
 import { Game } from "./components/Game";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./pages/MainLayout";
-import { SelectGameMode } from "./components/SelectGameMode";
 import { Online } from "./pages/Online";
 import { GameRoom } from "./pages/GameRoom";
+import { SelectGameMode } from "./components/SelectGameMode";
+// import { SelectGameMode } from "./components/SelectGameMode";
+// import { Online } from "./pages/Online";
+// import { GameRoom } from "./pages/GameRoom";
 function App() {
   return (
     <div className="App">
@@ -18,10 +21,9 @@ function App() {
             <Route path="/" element={<MainLayout />}>
               <Route path="/online" element={<Online />}>
                 <Route path="room/:roomId" element={<GameRoom />} />
-                {/* <Route path="room/:roomId" element={<GameRoom />} /> */}
               </Route>
               <Route
-                path="/offline"
+                path="/"
                 element={
                   <>
                     <Game />

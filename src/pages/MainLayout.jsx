@@ -1,14 +1,22 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Home } from "./Home";
+import { Game } from "../components/Game";
+import { SelectGameMode } from "../components/SelectGameMode";
 
-export function MainLayout() {
+export function MainLayout({ children }) {
   const location = useLocation(); // Получаем текущий путь внутри BrowserRouter
 
   return (
+    // <main>{children}</main>
     <>
-      {/* Отображаем Home только если находимся на главной странице */}
-      {location.pathname === "/" && <Home />}
-      <Outlet /> {/* Рендерим вложенные маршруты */}
+      {location.pathname === "/" && (
+        <>
+          <Game />
+          {/* <SelectGameMode /> */}
+        </>
+      )}
+
+      {/* <Outlet /> */}
     </>
   );
 }

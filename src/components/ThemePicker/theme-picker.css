@@ -1,0 +1,46 @@
+.theme-picker {
+}
+
+.picker-list {
+  display: flex; /* Flexbox для выравнивания элементов */
+  list-style-type: none; /* Убираем маркеры у списка */
+  padding: 0; /* Убираем внутренние отступы */
+  margin: 0; /* Убираем внешние отступы */
+  gap: 30px;
+  justify-content: center;
+}
+
+.picker-item {
+  width: 200px; /* Ширина бокса */
+  height: 112px; /* Высота бокса */
+  background-color: #4caf50; /* Цвет фона */
+
+  /* background-image: url("../../images/Mattehorn\ background\ photo.jpg"); */
+  background-size: 100%;
+
+  background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание текста */
+  justify-content: center; /* Горизонтальное выравнивание текста */
+  color: white; /* Цвет текста */
+  font-size: 18px; /* Размер шрифта */
+  border-radius: 5px;
+}
+
+.picker-item:first-child {
+  background-image: url("../../images/Mattehorn\ background\ photo.jpg");
+}
+
+.picker-item:nth-child(2) {
+  /* background-image: url("../../images/Mattehorn\ background\ photo.jpg"); */
+
+  background-color: gray;
+  color: black;
+}
+
+.picker-item:nth-child(3) {
+  background-image: url("../../images/Mattehorn\ background\ photo.jpg");
+}

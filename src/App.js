@@ -18,20 +18,7 @@ function App() {
       <div className="app-wrapper">
         <BrowserRouter basename="/tic-tac-toe-react">
           <Routes>
-            <Route path="/" element={<MainLayout />}>
-              <Route path="/online" element={<Online />}>
-                <Route path="room/:roomId" element={<GameRoom />} />
-              </Route>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Game />
-                    <SelectGameMode />
-                  </>
-                }
-              />
-            </Route>
+            <Route path="/" element={<MainLayout />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

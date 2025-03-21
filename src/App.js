@@ -8,44 +8,47 @@ import { Online } from "./pages/Online";
 import { GameRoom } from "./pages/GameRoom";
 import { SelectGameMode } from "./components/SelectGameMode";
 import { useEffect, useState } from "react";
+import { ThemeProvider } from "./components/ThemeProvider";
 // import { SelectGameMode } from "./components/SelectGameMode";
 // import { Online } from "./pages/Online";
 // import { GameRoom } from "./pages/GameRoom";
 function App() {
-  const [theme, setTheme] = useState(() => getDefaultTheme());
+  // const [theme, setTheme] = useState(() => getDefaultTheme());
 
-  function getDefaultTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme;
+  // function getDefaultTheme() {
+  //   const savedTheme = localStorage.getItem("theme");
+  //   if (savedTheme) return savedTheme;
 
-    const res = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    console.log("res", res);
-    return res;
-  }
+  //   const res = window.matchMedia("(prefers-color-scheme: dark)").matches
+  //     ? "dark"
+  //     : "light";
+  //   console.log("res", res);
+  //   return res;
+  // }
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   localStorage.setItem("theme", theme);
+  // }, [theme]);
 
   return (
-    <div className="App">
-      {/* <header className="App-header">g</header>
-       */}
-      <div className="app-wrapper">
-        <BrowserRouter basename="/tic-tac-toe-react">
-          <Routes>
-            <Route path="/" element={<MainLayout />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+    <ThemeProvider>
+      <div className="App">
+        {/* <header className="App-header">g</header>
+         */}
+        <div className="app-wrapper">
+          <BrowserRouter basename="/tic-tac-toe-react">
+            <Routes>
+              <Route path="/" element={<MainLayout />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </div>
 
-      {/* <header className="App-header">
+        {/* <header className="App-header">
         <Game />
       </header> */}
-      <Toaster position="top-right" />
-    </div>
+        <Toaster position="top-right" />
+      </div>
+    </ThemeProvider>
   );
 }
 

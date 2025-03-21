@@ -1,5 +1,5 @@
 .square {
-  position: relative;
+  /* position: relative;
   width: 100px;
   height: 100px;
   background-color: #fff;
@@ -10,8 +10,40 @@
   cursor: pointer;
   box-sizing: border-box;
   border: none;
-  border: 1px solid black;
+  border: 1px solid black; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border: none;
+  background-color: white;
 }
+
+.square:not(:nth-child(3n)):after {
+  /* Вертикальные линии */
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 80%;
+  width: 4px;
+  background-color: black;
+}
+
+.square:nth-child(-n + 6):before {
+  /* Горизонтальные линии */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 4px;
+  background-color: black;
+}
+
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .square {
     width: 85px;
@@ -22,14 +54,17 @@
 }
 
 .square:hover {
+  cursor: pointer;
+}
+/* .square:hover {
   background-color: #000;
   color: #fff;
   transition: color, background-color, 500ms;
-}
+} */
 
-.square:hover .square-pic {
-  filter: invert(100%) brightness(100%); /* Белый цвет */
-}
+/* .square:hover .square-pic {
+  filter: invert(100%) brightness(100%); 
+} */
 
 .square-pic {
   display: flex;
@@ -100,10 +135,16 @@
 }
 
 .x {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden; */
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 300px;
+  height: 300px;
 }
 
 .squareImg {

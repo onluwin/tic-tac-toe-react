@@ -76,14 +76,14 @@
   height: 60px;
   cursor: pointer;
   font-size: 20px;
-  border: 3px solid #fff;
-  color: #fff;
+  border: 3px solid black;
+  color: white;
   transition: border, color, 500ms;
-  background-color: #282c34;
+  background-color: black;
   /* margin-top: 230px; */
 }
 .restartBtn:hover {
-  border: 3px solid #fff;
+  border: 3px solid black;
   color: #282c34;
   background-color: #fff;
 }
@@ -128,9 +128,9 @@
   transition: all 0.3s ease;
 }
 
-.difficultySelect:hover {
+/* .difficultySelect:hover {
   border-color: #007bff;
-}
+} */
 option {
   padding: 10px;
   color: #333;
@@ -145,16 +145,18 @@ option {
   width: 120px;
   height: 50px;
   margin-bottom: 15px;
-  background-color: #282c34;
-  border: 2px solid #fff;
+  background-color: black;
+
   color: #fff;
   transition: border, color, 500ms;
   font-size: 16px;
 }
 
 .scoreResetBtn:hover {
-  color: #282c34;
-  background-color: #fff;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+
   cursor: pointer;
   transition: border, color, 500ms;
 }

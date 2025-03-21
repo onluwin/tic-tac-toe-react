@@ -5,12 +5,9 @@ import { useTheme } from "../ThemeProvider";
 import "./theme-selector.css";
 
 export default function ThemeSelector() {
-  let currentTheme;
+  //   let currentTheme;
   const { changeTheme } = useTheme();
-
-  useEffect(() => {
-    currentTheme = changeTheme;
-  }, [changeTheme]);
+  let currentTheme = localStorage.getItem("theme");
 
   return (
     <div className="theme-selector">

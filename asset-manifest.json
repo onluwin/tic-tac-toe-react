@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/tic-tac-toe-react/static/css/main.616c8177.css",
-    "main.js": "/tic-tac-toe-react/static/js/main.48659a0f.js",
+    "main.css": "/tic-tac-toe-react/static/css/main.7078e8c7.css",
+    "main.js": "/tic-tac-toe-react/static/js/main.54288f60.js",
     "static/js/453.6bda9f2e.chunk.js": "/tic-tac-toe-react/static/js/453.6bda9f2e.chunk.js",
     "static/media/Mattehorn background photo.jpg": "/tic-tac-toe-react/static/media/Mattehorn background photo.5f7f370833b176863fb5.jpg",
     "index.html": "/tic-tac-toe-react/index.html",
-    "main.616c8177.css.map": "/tic-tac-toe-react/static/css/main.616c8177.css.map",
-    "main.48659a0f.js.map": "/tic-tac-toe-react/static/js/main.48659a0f.js.map",
+    "static/media/menu-icon.svg": "/tic-tac-toe-react/static/media/menu-icon.0088385cdbf1a1dc277a7946365d51fe.svg",
+    "main.7078e8c7.css.map": "/tic-tac-toe-react/static/css/main.7078e8c7.css.map",
+    "main.54288f60.js.map": "/tic-tac-toe-react/static/js/main.54288f60.js.map",
     "453.6bda9f2e.chunk.js.map": "/tic-tac-toe-react/static/js/453.6bda9f2e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.616c8177.css",
-    "static/js/main.48659a0f.js"
+    "static/css/main.7078e8c7.css",
+    "static/js/main.54288f60.js"
   ]
 }

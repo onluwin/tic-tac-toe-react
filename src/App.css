@@ -17,8 +17,7 @@
   /* width: 100vh; */
   height: 100vh;
   /* background-color: #282c34; */
-
-  background-image: url("./images/Mattehorn\ background\ photo.jpg");
+  /* background-image: url("./images/Mattehorn\ background\ photo.jpg"); */
   background-size: 100%;
 
   background-size: cover; /* Ensures the image covers the entire viewport */

@@ -31,7 +31,8 @@
 }
 
 .picker-item:first-child {
-  background-image: url("../../images/Mattehorn\ background\ photo.jpg");
+  background-color: white;
+  color: black;
 }
 
 .picker-item:nth-child(2) {

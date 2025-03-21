@@ -18,6 +18,7 @@ export const SelectGameMode = () => {
     padding: 10px 20px; /* Отступы внутри кнопки */
     color: white; /* Цвет текста */
     background-color: #007bff; /* Цвет фона */
+
     border: none; /* Убираем рамки */
     border-radius: 5px; /* Закругление углов */
     text-decoration: none; /* Убираем подчеркивание */

@@ -7,10 +7,28 @@ import { MainLayout } from "./pages/MainLayout";
 import { Online } from "./pages/Online";
 import { GameRoom } from "./pages/GameRoom";
 import { SelectGameMode } from "./components/SelectGameMode";
+import { useEffect, useState } from "react";
 // import { SelectGameMode } from "./components/SelectGameMode";
 // import { Online } from "./pages/Online";
 // import { GameRoom } from "./pages/GameRoom";
 function App() {
+  const [theme, setTheme] = useState(() => getDefaultTheme());
+
+  function getDefaultTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme;
+
+    const res = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    console.log("res", res);
+    return res;
+  }
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <div className="App">
       {/* <header className="App-header">g</header>

@@ -79,7 +79,7 @@ export const Game = () => {
               .classList.add("winner", "diagonal-left");
           });
           break;
-
+        // 123
         default:
           break;
       }

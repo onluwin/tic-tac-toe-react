@@ -1,50 +1,65 @@
 // import { useTheme } from "./ThemeContext";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "../ThemeProvider";
 import "./theme-selector.css";
 
 export default function ThemeSelector() {
   //   let currentTheme;
   const { changeTheme } = useTheme();
-  let currentTheme = localStorage.getItem("theme");
+
+  const [currentTheme, setCurrentTheme] = useState(
+    localStorage.getItem("theme")
+  );
+
+  useEffect(() => {
+    changeTheme(currentTheme);
+  }, [currentTheme]);
 
   return (
     <div className="theme-selector">
       <ul className="picker-list">
         <li
           className={`picker-item ${
-            currentTheme === "light" ? "current-theme" : ""
+            currentTheme === "palottis_drone" ? "current-theme" : ""
           }`}
-          id="light"
-          onClick={() => changeTheme("light")}
-        >
-          Белая тема
-        </li>
+          id="palottis_drone"
+          onClick={() => setCurrentTheme("palottis_drone")}
+        ></li>
         <li
           className={`picker-item ${
-            currentTheme === "dark" ? "current-theme" : ""
+            currentTheme === "schweiz1" ? "current-theme" : ""
           }`}
-          id="dark"
-          onClick={() => changeTheme("dark")}
-        >
-          Черная тема
-        </li>
+          id="schweiz1"
+          onClick={() => setCurrentTheme("dark")}
+        ></li>
         <li
           className={`picker-item ${
             currentTheme === "blue" ? "current-theme" : ""
           }`}
           id="blue"
-          onClick={() => changeTheme("blue")}
-        >
-          Синяя тема
-        </li>
+          onClick={() => setCurrentTheme("blue")}
+        ></li>
+        <li
+          className={`picker-item ${
+            currentTheme === "palottis_drone" ? "current-theme" : ""
+          }`}
+          id="palottis_drone"
+          onClick={() => setCurrentTheme("palottis_drone")}
+        ></li>
+        <li
+          className={`picker-item ${
+            currentTheme === "palottis_drone" ? "current-theme" : ""
+          }`}
+          id="palottis_drone"
+          onClick={() => setCurrentTheme("palottis_drone")}
+        ></li>
       </ul>
 
       {/* <div
         className="theme-option"
         style={{ backgroundColor: "#ffffff", color: "#000000" }}
-        onClick={() => changeTheme("white-theme")}
+        onClick={() => setCurrentTheme("white-theme")}
       >
         Белая тема
       </div>

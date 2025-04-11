@@ -15,6 +15,8 @@
 }
 
 .picker-list {
+  width: 100%;
+  flex-wrap: wrap;
   display: flex; /* Flexbox для выравнивания элементов */
   list-style-type: none; /* Убираем маркеры у списка */
   padding: 0; /* Убираем внутренние отступы */
@@ -27,7 +29,6 @@
   cursor: pointer;
   width: 200px; /* Ширина бокса */
   height: 112px; /* Высота бокса */
-  background-color: #4caf50; /* Цвет фона */
 
   /* background-image: url("../../images/Mattehorn\ background\ photo.jpg"); */
   background-size: 100%;
@@ -46,12 +47,12 @@
 
 .picker-item:first-child {
   background-color: white;
-  color: black;
-  /* background-image: url("../../images/light-theme.png"); */
+  color: white;
+  background-image: url("/src/images/palottis1.jpg");
 }
 
 .picker-item:nth-child(2) {
-  /* background-image: url("../../images/Mattehorn\ background\ photo.jpg"); */
+  background-image: url("../../images/schweiz1.jpg");
 
   background-color: gray;
   color: black;
@@ -59,6 +60,14 @@
 
 .picker-item:nth-child(3) {
   background-image: url("../../images/Mattehorn\ background\ photo.jpg");
+}
+
+.picker-item:nth-child(4) {
+  background-image: url("../../images/schweiz2.jpg");
+}
+
+.picker-item:nth-child(5) {
+  background-image: url("../../images/pistenbully.jpg");
 }
 
 .current-theme {

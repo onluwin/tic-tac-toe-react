@@ -15,16 +15,20 @@ import { ThemeProvider } from "./components/ThemeProvider";
 function App() {
   // const [theme, setTheme] = useState(() => getDefaultTheme());
 
-  // function getDefaultTheme() {
-  //   const savedTheme = localStorage.getItem("theme");
-  //   if (savedTheme) return savedTheme;
+  function getDefaultTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme;
 
-  //   const res = window.matchMedia("(prefers-color-scheme: dark)").matches
-  //     ? "dark"
-  //     : "light";
-  //   console.log("res", res);
-  //   return res;
-  // }
+    console.log(savedTheme);
+
+    // const res = window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ? "dark"
+    //   : "light";
+    // console.log("res", res);
+    // return res;
+  }
+
+  getDefaultTheme();
 
   // useEffect(() => {
   //   localStorage.setItem("theme", theme);

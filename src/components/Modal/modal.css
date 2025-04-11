@@ -56,7 +56,7 @@
   height: 100px;
   color: black;
 
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }

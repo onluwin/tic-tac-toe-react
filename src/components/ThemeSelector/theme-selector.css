@@ -30,7 +30,7 @@
   width: 200px; /* Ширина бокса */
   height: 112px; /* Высота бокса */
 
-  /* background-image: url("../../images/Mattehorn\ background\ photo.jpg"); */
+  /* background-image: url("/src/images/matterhorn.jpg"); */
   background-size: 100%;
 
   background-size: cover; /* Ensures the image covers the entire viewport */
@@ -52,22 +52,22 @@
 }
 
 .picker-item:nth-child(2) {
-  background-image: url("../../images/schweiz1.jpg");
+  background-image: url("/src/images/schweiz1.jpg");
 
   background-color: gray;
   color: black;
 }
 
 .picker-item:nth-child(3) {
-  background-image: url("../../images/Mattehorn\ background\ photo.jpg");
+  background-image: url("/src/images/matterhorn.jpg");
 }
 
 .picker-item:nth-child(4) {
-  background-image: url("../../images/schweiz2.jpg");
+  background-image: url("/src/images/schweiz2.jpg");
 }
 
 .picker-item:nth-child(5) {
-  background-image: url("../../images/pistenbully.jpg");
+  background-image: url("/src/images/pistenbully.jpg");
 }
 
 .current-theme {

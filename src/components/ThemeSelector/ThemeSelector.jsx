@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../ThemeProvider";
 import "./theme-selector.css";
+import { themen } from "./themen";
+import { changeStyles } from "../../Utils/changeStyles";
 
 export default function ThemeSelector() {
   //   let currentTheme;
@@ -14,6 +16,11 @@ export default function ThemeSelector() {
 
   useEffect(() => {
     changeTheme(currentTheme);
+    const appRef = document.querySelector(".app-wrapper");
+    if (!appRef) return;
+
+    appRef.style.backgroundImage = `url(${themen[currentTheme]})`;
+    changeStyles(currentTheme);
   }, [currentTheme]);
 
   return (
@@ -21,62 +28,40 @@ export default function ThemeSelector() {
       <ul className="picker-list">
         <li
           className={`picker-item ${
-            currentTheme === "palottis_drone" ? "current-theme" : ""
+            currentTheme === "palottis1" ? "current-theme" : ""
           }`}
           id="palottis_drone"
-          onClick={() => setCurrentTheme("palottis_drone")}
+          onClick={() => setCurrentTheme("palottis1")}
         ></li>
         <li
           className={`picker-item ${
             currentTheme === "schweiz1" ? "current-theme" : ""
           }`}
-          id="schweiz1"
-          onClick={() => setCurrentTheme("dark")}
+          id="dark"
+          onClick={() => setCurrentTheme("schweiz1")}
         ></li>
         <li
           className={`picker-item ${
-            currentTheme === "blue" ? "current-theme" : ""
+            currentTheme === "matterhorn" ? "current-theme" : ""
           }`}
           id="blue"
-          onClick={() => setCurrentTheme("blue")}
+          onClick={() => setCurrentTheme("matterhorn")}
         ></li>
         <li
           className={`picker-item ${
-            currentTheme === "palottis_drone" ? "current-theme" : ""
+            currentTheme === "schweiz2" ? "current-theme" : ""
           }`}
           id="palottis_drone"
-          onClick={() => setCurrentTheme("palottis_drone")}
+          onClick={() => setCurrentTheme("schweiz2")}
         ></li>
         <li
           className={`picker-item ${
-            currentTheme === "palottis_drone" ? "current-theme" : ""
+            currentTheme === "pistenbully" ? "current-theme" : ""
           }`}
           id="palottis_drone"
-          onClick={() => setCurrentTheme("palottis_drone")}
+          onClick={() => setCurrentTheme("pistenbully")}
         ></li>
       </ul>
-
-      {/* <div
-        className="theme-option"
-        style={{ backgroundColor: "#ffffff", color: "#000000" }}
-        onClick={() => setCurrentTheme("white-theme")}
-      >
-        Белая тема
-      </div>
-      <div
-        className="theme-option"
-        style={{ backgroundColor: "#000000", color: "#ffffff" }}
-        onClick={() => changeTheme("black-theme")}
-      >
-        Черная тема
-      </div>
-      <div
-        className="theme-option"
-        style={{ backgroundColor: "#1e90ff", color: "#ffffff" }}
-        onClick={() => changeTheme("blue-theme")}
-      >
-        Синяя тема
-      </div> */}
     </div>
   );
 }

@@ -21,7 +21,7 @@
   height: 100px;
   position: relative;
   border: none;
-  background-color: white;
+  background-color: transparent;
 }
 
 .square:not(:nth-child(3n)):after {
@@ -31,7 +31,8 @@
   right: 0;
   height: 80%;
   width: 4px;
-  background-color: black;
+
+  background-color: var(--background-color, black);
 }
 
 .square:nth-child(-n + 6):before {
@@ -41,7 +42,8 @@
   bottom: 0;
   width: 80%;
   height: 4px;
-  background-color: black;
+
+  background-color: var(--background-color, black);
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -56,6 +58,23 @@
 .square:hover {
   cursor: pointer;
 }
+
+.white-background::before {
+  background-color: white;
+}
+
+.white-background::after {
+  background-color: white;
+}
+
+.black-background::before {
+  background-color: black;
+}
+
+.black-background::after {
+  background-color: black;
+}
+
 /* .square:hover {
   background-color: #000;
   color: #fff;

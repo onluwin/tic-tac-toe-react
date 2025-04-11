@@ -1,38 +1,38 @@
 import { Toaster } from "react-hot-toast";
 
 import "./App.css";
-import { Game } from "./components/Game";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./pages/MainLayout";
-import { Online } from "./pages/Online";
-import { GameRoom } from "./pages/GameRoom";
-import { SelectGameMode } from "./components/SelectGameMode";
+
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { themen } from "./components/ThemeSelector/themen";
+import { changeStyles } from "./Utils/changeStyles";
 // import { SelectGameMode } from "./components/SelectGameMode";
 // import { Online } from "./pages/Online";
 // import { GameRoom } from "./pages/GameRoom";
 function App() {
-  // const [theme, setTheme] = useState(() => getDefaultTheme());
+  const [currentTheme, setCurrentTheme] = useState(() => getDefaultTheme());
 
   function getDefaultTheme() {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) return savedTheme;
 
-    console.log(savedTheme);
-
-    // const res = window.matchMedia("(prefers-color-scheme: dark)").matches
-    //   ? "dark"
-    //   : "light";
-    // console.log("res", res);
-    // return res;
+    return null;
   }
 
-  getDefaultTheme();
-
   // useEffect(() => {
-  //   localStorage.setItem("theme", theme);
+  //   if (theme) {
+  //   }
   // }, [theme]);
+
+  useEffect(() => {
+    const appRef = document.querySelector(".app-wrapper");
+    if (!appRef) return;
+
+    appRef.style.backgroundImage = `url(${themen[currentTheme]})`;
+    changeStyles(currentTheme);
+  }, []);
 
   return (
     <ThemeProvider>

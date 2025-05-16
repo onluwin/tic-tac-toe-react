@@ -54,8 +54,8 @@
 .picker-item:nth-child(2) {
   background-image: url("/src/images/schweiz1.jpg");
 
-  background-color: gray;
-  color: black;
+  /* background-color: gray;
+  color: black; */
 }
 
 .picker-item:nth-child(3) {
@@ -68,6 +68,10 @@
 
 .picker-item:nth-child(5) {
   background-image: url("/src/images/pistenbully.jpg");
+}
+
+.picker-item:nth-child(6) {
+  background-image: url("/src/images/black_background.jpg");
 }
 
 .current-theme {

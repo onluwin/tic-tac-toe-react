@@ -30,36 +30,37 @@ export default function ThemeSelector() {
           className={`picker-item ${
             currentTheme === "palottis1" ? "current-theme" : ""
           }`}
-          id="palottis_drone"
           onClick={() => setCurrentTheme("palottis1")}
         ></li>
         <li
           className={`picker-item ${
             currentTheme === "schweiz1" ? "current-theme" : ""
           }`}
-          id="dark"
           onClick={() => setCurrentTheme("schweiz1")}
         ></li>
         <li
           className={`picker-item ${
             currentTheme === "matterhorn" ? "current-theme" : ""
           }`}
-          id="blue"
           onClick={() => setCurrentTheme("matterhorn")}
         ></li>
         <li
           className={`picker-item ${
             currentTheme === "schweiz2" ? "current-theme" : ""
           }`}
-          id="palottis_drone"
           onClick={() => setCurrentTheme("schweiz2")}
         ></li>
         <li
           className={`picker-item ${
             currentTheme === "pistenbully" ? "current-theme" : ""
           }`}
-          id="palottis_drone"
           onClick={() => setCurrentTheme("pistenbully")}
+        ></li>
+        <li
+          className={`picker-item ${
+            currentTheme === "black" ? "current-theme" : ""
+          }`}
+          onClick={() => setCurrentTheme("black")}
         ></li>
       </ul>
     </div>

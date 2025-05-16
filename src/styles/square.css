@@ -60,19 +60,19 @@
 }
 
 .white-background::before {
-  background-color: white;
+  background-color: white !important;
 }
 
 .white-background::after {
-  background-color: white;
+  background-color: white !important;
 }
 
 .black-background::before {
-  background-color: black;
+  background-color: black !important;
 }
 
 .black-background::after {
-  background-color: black;
+  background-color: black !important;
 }
 
 /* .square:hover {

@@ -48,9 +48,11 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .square {
-    width: 85px;
-    height: 85px;
-    /* Можно добавить что-то вроде margin для отступов */
+    /* width: 85px;
+    height: 85px; */
+
+    /* ломало */
+
     font-size: 33px;
   }
 }

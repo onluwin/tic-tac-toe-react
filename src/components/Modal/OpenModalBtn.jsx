@@ -7,7 +7,7 @@ export const OpenModalBtn = ({ isModalOpen, setIsModalOpen }) => {
         className="open-modal-btn"
         onClick={() => setIsModalOpen(!isModalOpen)}
       >
-        <img src={menu} alt="menu" />
+        <img className="open-modal-image" src={menu} alt="menu" />
       </button>
     </>
   );

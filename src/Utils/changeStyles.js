@@ -37,35 +37,80 @@ export const changeStyles = (image) => {
     }
   };
 
-  const paintElse = () => {
+  const paintElse = (picture, color) => {
     const ref = {
       score: document.querySelector(".scoreText"),
       resetBtn: document.querySelector(".scoreResetbtn"),
+      gameResult: document.querySelector(".gameResult"),
+      enableBotBtn: document.querySelector(".enableBotBtn"),
     };
+
+    const { score, resetBtn, gameResult, enableBotBtn } = ref;
+    const refsArray = [score, gameResult, enableBotBtn];
+
+    // if (color === "white") {
+    //   refsArray.forEach((elem) => {
+    //     console.log(elem);
+    //     elem.style.color = "white";
+    //   });
+    // } else {
+    //   refsArray.forEach((elem) => {
+    //     console.log(elem);
+    //     elem.style.color = "black";
+    //   });
+    // }
+
+    switch (picture) {
+      case "pistenbully":
+        score.style.color = "black";
+        break;
+
+      case "palottis1":
+        score.style.color = "white";
+        break;
+
+      case "pistenbully":
+        score.style.color = "black";
+        break;
+
+      default:
+        break;
+    }
   };
 
   switch (image) {
     case "palottis1":
       paintSquares("white");
+      paintElse("palottis1");
       break;
 
     case "schweiz1":
       paintSquares("white");
+      paintElse("schweiz1");
+
       break;
 
     case "schweiz2":
       paintSquares("white");
+      paintElse("schweiz2");
+
       break;
 
     case "pistenbully":
       paintSquares("white");
+      paintElse("pistenbully");
+
       break;
 
     case "matterhorn":
       paintSquares("white");
+      paintElse("matterhorn");
+
       break;
     case "black":
       paintSquares("white");
+      paintElse("black");
+
       break;
 
     case "default":

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tic-tac-toe-react/static/css/main.c430255b.css",
-    "main.js": "/tic-tac-toe-react/static/js/main.3cb65039.js",
+    "main.css": "/tic-tac-toe-react/static/css/main.c2ff8ba1.css",
+    "main.js": "/tic-tac-toe-react/static/js/main.e198ea43.js",
     "static/js/453.6bda9f2e.chunk.js": "/tic-tac-toe-react/static/js/453.6bda9f2e.chunk.js",
     "static/media/matterhorn.jpg": "/tic-tac-toe-react/static/media/matterhorn.5f7f370833b176863fb5.jpg",
     "static/media/pistenbully.jpg": "/tic-tac-toe-react/static/media/pistenbully.6ee2ed48e14e164fc338.jpg",
@@ -11,12 +11,12 @@
     "static/media/schweiz2.jpg": "/tic-tac-toe-react/static/media/schweiz2.5375ac900bb649ed8320.jpg",
     "index.html": "/tic-tac-toe-react/index.html",
     "static/media/menu-icon.svg": "/tic-tac-toe-react/static/media/menu-icon.0088385cdbf1a1dc277a7946365d51fe.svg",
-    "main.c430255b.css.map": "/tic-tac-toe-react/static/css/main.c430255b.css.map",
-    "main.3cb65039.js.map": "/tic-tac-toe-react/static/js/main.3cb65039.js.map",
+    "main.c2ff8ba1.css.map": "/tic-tac-toe-react/static/css/main.c2ff8ba1.css.map",
+    "main.e198ea43.js.map": "/tic-tac-toe-react/static/js/main.e198ea43.js.map",
     "453.6bda9f2e.chunk.js.map": "/tic-tac-toe-react/static/js/453.6bda9f2e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c430255b.css",
-    "static/js/main.3cb65039.js"
+    "static/css/main.c2ff8ba1.css",
+    "static/js/main.e198ea43.js"
   ]
 }

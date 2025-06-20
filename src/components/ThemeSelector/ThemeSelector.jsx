@@ -58,9 +58,9 @@ export default function ThemeSelector() {
         ></li>
         <li
           className={`picker-item ${
-            currentTheme === "black" ? "current-theme" : ""
+            currentTheme === "dark" ? "current-theme" : ""
           }`}
-          onClick={() => setCurrentTheme("black")}
+          onClick={() => setCurrentTheme("dark")}
         ></li>
       </ul>
     </div>

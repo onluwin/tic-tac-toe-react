@@ -67,10 +67,25 @@ export const changeStyles = (image) => {
 
       case "palottis1":
         score.style.color = "white";
+        result.style.color = "white";
+
         break;
 
-      case "pistenbully":
+      case "matterhorn":
         score.style.color = "black";
+        result.style.color = "white";
+
+        break;
+
+      case "schweiz2":
+        score.style.color = "white";
+        result.style.color = "white";
+
+        break;
+
+      case "black":
+        score.style.color = "black";
+        result.style.color = "black";
         break;
 
       default:
@@ -109,6 +124,12 @@ export const changeStyles = (image) => {
       break;
     case "black":
       paintSquares("white");
+      paintElse("black");
+
+      break;
+
+    case "dark":
+      paintSquares("black");
       paintElse("black");
 
       break;

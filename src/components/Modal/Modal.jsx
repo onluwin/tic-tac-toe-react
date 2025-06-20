@@ -32,7 +32,7 @@ export const Modal = ({ isModalOpen, setIsModalOpen }) => {
   return (
     <div className={`backdrop ${isModalOpen ? "" : "is-hidden"}`}>
       <div className="modal" ref={modalRef}>
-        <h1>Pick a theme</h1>
+        <h1>Wählen Sie eine Theme aus</h1>
         <ThemeSelector />
         <button
           className="close-modal-btn"

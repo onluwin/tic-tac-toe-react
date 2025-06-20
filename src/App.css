@@ -36,8 +36,8 @@
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .app-wrapper {
-    background-color: #282c34;
-    background-image: none;
+    /* background-color: #282c34;
+    background-image: none; */
   }
 }
 

@@ -71,7 +71,7 @@
 }
 
 .picker-item:nth-child(6) {
-  background-image: url("/src/images/black_background.jpg");
+  background-image: url("/src/images/white_background.jpg");
 }
 
 .current-theme {

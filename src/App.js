@@ -50,7 +50,15 @@ function App() {
         {/* <header className="App-header">
         <Game />
       </header> */}
-        <Toaster position="top-right" />
+        <Toaster
+          position="top-left"
+          toastOptions={{
+            style: {
+              background: "black",
+              color: "white",
+            },
+          }}
+        />
       </div>
     </ThemeProvider>
   );
